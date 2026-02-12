@@ -7,8 +7,8 @@ test.describe('Login', () => {
     test('@smoke @auth @critical Login with valid credentials', async ({
       loginPage,
     }) => {
-      await loginPage.goto(process.env.LOGIN_PATH || '/auth/login');
-      await loginPage.page.waitForLoadState('networkidle');
+      await loginPage.goto(env.loginPath);
+      await loginPage.pageForTest.waitForLoadState('networkidle');
       await loginPage.login(env.testUserEmail, env.testUserPassword);
       const loggedIn = await loginPage.isLoggedIn();
       expect(loggedIn).toBe(true);
@@ -17,8 +17,8 @@ test.describe('Login', () => {
     test('@regression @auth @e2e Login with invalid credentials shows error', async ({
       loginPage,
     }) => {
-      await loginPage.goto(process.env.LOGIN_PATH || '/auth/login');
-      await loginPage.page.waitForLoadState('networkidle');
+      await loginPage.goto(env.loginPath);
+      await loginPage.pageForTest.waitForLoadState('networkidle');
       // Use password that passes format validation to trigger real server error
       await loginPage.login('invalid@example.com', 'WrongPassword123!');
       const errorMessage = await loginPage.getErrorMessage();
@@ -29,7 +29,7 @@ test.describe('Login', () => {
       loginPage,
       authenticatedPage,
     }) => {
-      await loginPage.goto(process.env.LOGIN_PATH || '/auth/login');
+      await loginPage.goto(env.loginPath);
       await expect(authenticatedPage).toHaveURL(/archivor\.io/);
     });
   });
@@ -38,8 +38,8 @@ test.describe('Login', () => {
     test('@e2e @auth Login with empty credentials shows validation', async ({
       loginPage,
     }) => {
-      await loginPage.goto(process.env.LOGIN_PATH || '/auth/login');
-      await loginPage.page.waitForLoadState('networkidle');
+      await loginPage.goto(env.loginPath);
+      await loginPage.pageForTest.waitForLoadState('networkidle');
       // Archivor disables Continue when email is empty - implicit validation
       const continueBtn = loginPage.continueButton;
       await continueBtn.waitFor({ state: 'visible', timeout: 5000 });

@@ -8,6 +8,11 @@ export class BasePage {
     protected baseURL: string = ''
   ) {}
 
+  /** Expose page for tests that need direct Playwright APIs (e.g. waitForLoadState). */
+  get pageForTest(): Page {
+    return this.page;
+  }
+
   // ─── Locator helpers (semantic selectors) ───────────────────────────────────
 
   getByRole(
