@@ -60,7 +60,7 @@ export const test = base.extend<{
   testData: Record<string, unknown>;
   baseURL: string;
 }>({
-  // Page with auth - for auth projects (chromium, firefox, webkit) ensures login (fixes firefox/webkit)
+  // Page with auth - for auth projects (chromium, firefox, webkit) ensures login
   // chromium-unauth skips: login/file-upload tests need unauthenticated start
   authenticatedPage: async ({ page, baseURL }, use, testInfo) => {
     const isUnauth = testInfo.project.name === 'chromium-unauth';
@@ -71,6 +71,8 @@ export const test = base.extend<{
       const needsLogin = await loginPage.emailInput.isVisible().catch(() => false);
       if (needsLogin) {
         await loginPage.login(env.testUserEmail, env.testUserPassword);
+        await loginPage.isLoggedIn();
+        await page.waitForLoadState('networkidle');
       }
     }
     await use(page);

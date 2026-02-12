@@ -17,6 +17,7 @@ export default defineConfig({
     ['html'],
     ['junit', { outputFile: 'test-results/junit.xml' }],
     ['allure-playwright', { outputFolder: 'allure-results' }],
+    ['./reporters/InfluxDBReporter.ts'],
   ],
   use: {
     baseURL: process.env.BASE_URL || 'https://app.staging.archivor.io',
