@@ -36,7 +36,7 @@ export default defineConfig({
     },
     {
       name: 'chromium-unauth',
-      testMatch: /login\.spec\.ts/,
+      testMatch: /login\.spec\.ts|file-upload\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
         storageState: { cookies: [], origins: [] },
@@ -44,7 +44,7 @@ export default defineConfig({
     },
     {
       name: 'chromium',
-      testMatch: /(?<!login)\.spec\.ts$/,
+      testMatch: /(?<!login)(?<!file-upload)\.spec\.ts$/,
       use: { ...devices['Desktop Chrome'] },
     },
     {
