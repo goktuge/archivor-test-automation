@@ -2,6 +2,8 @@ import path from 'path';
 import fs from 'fs';
 import type { Page } from '@playwright/test';
 import { test as base, expect as baseExpect } from '@playwright/test';
+import { LoginPage } from '../pages';
+import { env } from '../config/env.config';
 
 // ─── Test data loader ─────────────────────────────────────────────────────────
 
@@ -58,8 +60,19 @@ export const test = base.extend<{
   testData: Record<string, unknown>;
   baseURL: string;
 }>({
-  // Page with auth state - when using storageState in config, page is already authenticated
-  authenticatedPage: async ({ page }, use) => {
+  // Page with auth - for auth projects (chromium, firefox, webkit) ensures login (fixes firefox/webkit)
+  // chromium-unauth skips: login/file-upload tests need unauthenticated start
+  authenticatedPage: async ({ page, baseURL }, use, testInfo) => {
+    const isUnauth = testInfo.project.name === 'chromium-unauth';
+    if (!isUnauth) {
+      await page.goto(env.loginPath);
+      await page.waitForLoadState('networkidle');
+      const loginPage = new LoginPage(page, baseURL ?? '');
+      const needsLogin = await loginPage.emailInput.isVisible().catch(() => false);
+      if (needsLogin) {
+        await loginPage.login(env.testUserEmail, env.testUserPassword);
+      }
+    }
     await use(page);
   },
 
