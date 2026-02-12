@@ -6,13 +6,13 @@ test.describe('Fixtures demo', () => {
     testData,
   }) => {
     await authenticatedPage.goto('/');
-    expect(authenticatedPage).toBeDefined();
-    expect(testData).toBeDefined();
+    expect(authenticatedPage).toBeTruthy();
+    expect(testData).toBeTruthy();
   });
 
   test('uses dashboardPage fixture', async ({ dashboardPage }) => {
     await dashboardPage.goto('/');
-    expect(dashboardPage).toBeDefined();
+    expect(dashboardPage).toBeTruthy();
   });
 
   test('uses custom matcher toBeValidEmail', async () => {

@@ -6,28 +6,28 @@ export class LoginPage extends BasePage {
     super(page, baseURL);
   }
 
-  // ─── Locators (semantic selectors) ───────────────────────────────────────────
+  // ─── Locators (label / placeholder / text) ───────────────────────────────────
 
   get emailInput(): Locator {
-    return this.page
-      .getByLabel(/email/i)
-      .or(this.getByPlaceholder(/email/i))
-      .or(this.page.locator('input[type="email"]'))
-      .or(this.page.locator('input[name*="email" i]'))
+    return this.getByLabel(/email|e-posta|e-mail/i)
+      .or(this.getByPlaceholder(/email|e-posta|e-mail|enter.*email/i))
+      .or(this.page.getByRole('textbox', { name: /email|e-posta/i }))
       .first();
   }
 
   get passwordInput(): Locator {
-    return this.page
-      .getByLabel(/password/i)
-      .or(this.getByPlaceholder(/password/i))
+    return this.getByLabel(/password|şifre|parola/i)
+      .or(this.getByPlaceholder(/password|şifre|parola/i))
       .or(this.page.locator('input[type="password"]'))
-      .or(this.page.locator('input[name*="password" i]'))
       .first();
   }
 
+  get continueButton(): Locator {
+    return this.getByRole('button', { name: /continue|devam|ilkeri/i }).first();
+  }
+
   get loginButton(): Locator {
-    return this.getByRole('button', { name: /log in|login|sign in|signin|submit/i }).first();
+    return this.getByRole('button', { name: /log in|login|sign in|signin|giriş|giriş yap|submit|continue/i }).first();
   }
 
   // ─── Actions ────────────────────────────────────────────────────────────────
@@ -35,6 +35,8 @@ export class LoginPage extends BasePage {
   async login(email: string, password: string): Promise<void> {
     await this.waitForElement(this.emailInput);
     await this.fillInput(this.emailInput, email);
+    await this.clickElement(this.continueButton);
+    await this.waitForElement(this.passwordInput);
     await this.fillInput(this.passwordInput, password);
     await this.clickElement(this.loginButton);
   }
@@ -54,10 +56,7 @@ export class LoginPage extends BasePage {
   async getErrorMessage(): Promise<string> {
     const errorSelectors = [
       this.page.getByRole('alert'),
-      this.getByText(/invalid|incorrect|error|wrong|failed/i),
-      this.getByTestId('error-message'),
-      this.getByTestId('login-error'),
-      this.page.locator('[data-testid*="error"]'),
+      this.getByText(/invalid|incorrect|error|wrong|failed|geçersiz|hatalı|must|required|include|character/i),
     ];
 
     for (const locator of errorSelectors) {

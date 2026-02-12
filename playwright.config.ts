@@ -35,7 +35,16 @@ export default defineConfig({
       retries: 0,
     },
     {
+      name: 'chromium-unauth',
+      testMatch: /login\.spec\.ts/,
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: { cookies: [], origins: [] },
+      },
+    },
+    {
       name: 'chromium',
+      testMatch: /(?<!login)\.spec\.ts$/,
       use: { ...devices['Desktop Chrome'] },
     },
     {

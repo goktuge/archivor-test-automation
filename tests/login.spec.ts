@@ -1,13 +1,14 @@
 import { test, expect } from '../fixtures';
 import { env } from '../config/env.config';
 
+// Login tests require archivor.io login page - update LoginPage locators for your app structure
 test.describe('Login', () => {
   test.describe('Authentication flow', () => {
     test('@smoke @auth @critical Login with valid credentials', async ({
       loginPage,
-      authenticatedPage,
     }) => {
       await loginPage.goto(process.env.LOGIN_PATH || '/auth/login');
+      await loginPage.page.waitForLoadState('networkidle');
       await loginPage.login(env.testUserEmail, env.testUserPassword);
       const loggedIn = await loginPage.isLoggedIn();
       expect(loggedIn).toBe(true);
@@ -17,7 +18,9 @@ test.describe('Login', () => {
       loginPage,
     }) => {
       await loginPage.goto(process.env.LOGIN_PATH || '/auth/login');
-      await loginPage.login('invalid@example.com', 'wrongpassword');
+      await loginPage.page.waitForLoadState('networkidle');
+      // Use password that passes format validation to trigger real server error
+      await loginPage.login('invalid@example.com', 'WrongPassword123!');
       const errorMessage = await loginPage.getErrorMessage();
       expect(errorMessage.length).toBeGreaterThan(0);
     });
@@ -36,9 +39,13 @@ test.describe('Login', () => {
       loginPage,
     }) => {
       await loginPage.goto(process.env.LOGIN_PATH || '/auth/login');
-      await loginPage.clickElement(loginPage.loginButton);
-      const errorMessage = await loginPage.getErrorMessage();
-      expect(errorMessage.length).toBeGreaterThanOrEqual(0);
+      await loginPage.page.waitForLoadState('networkidle');
+      // Archivor disables Continue when email is empty - implicit validation
+      const continueBtn = loginPage.continueButton;
+      await continueBtn.waitFor({ state: 'visible', timeout: 5000 });
+      await expect(continueBtn).toBeDisabled();
+      // Email field should be empty
+      await expect(loginPage.emailInput).toHaveValue('');
     });
   });
 });

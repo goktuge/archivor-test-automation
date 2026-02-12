@@ -13,7 +13,7 @@ function toTestStatus(status: unknown): TestStatus {
 
 // Auto-collect test execution metrics and attach to Allure after each test
 base.afterEach(async ({}, testInfo) => {
-  const status = toTestStatus(testInfo.status());
+  const status = toTestStatus(testInfo.status ?? 'failed');
   const browser = testInfo.project?.name ?? 'unknown';
   const duration = testInfo.duration;
 
