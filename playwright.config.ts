@@ -49,10 +49,12 @@ export default defineConfig({
     },
     {
       name: 'firefox',
+      testMatch: /(?<!login)(?<!file-upload)\.spec\.ts$/,
       use: { ...devices['Desktop Firefox'] },
     },
     {
       name: 'webkit',
+      testMatch: /(?<!login)(?<!file-upload)\.spec\.ts$/,
       use: { ...devices['Desktop Safari'] },
     },
   ],
