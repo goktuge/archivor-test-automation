@@ -83,18 +83,9 @@ export class TestMetricsCollector {
     this.performanceMetrics = [];
   }
 
-  /**
-   * Stub: Send metrics to InfluxDB.
-   * Implement when credentials are available.
-   */
+  /** Stub: Send metrics to InfluxDB. InfluxDBReporter handles this. */
   async sendToInfluxDB(): Promise<void> {
-    // Stub - implement when InfluxDB credentials are configured
-    // Example usage:
-    // const { getInfluxDBConfig } = await import('../config/influxdb.config');
-    // const config = getInfluxDBConfig();
-    // if (config.enabled && config.token) {
-    //   // Write testResults and performanceMetrics to InfluxDB
-    // }
+    // No-op; InfluxDBReporter writes directly
   }
 }
 

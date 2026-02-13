@@ -1,4 +1,4 @@
-import { test } from '../fixtures';
+import { test, expect } from '../fixtures';
 
 test.describe('Dashboard', () => {
   test('@smoke @e2e Left menu has all expected items: Dashboard, All assets, My favorites, Collections, Recently deleted', async ({
@@ -8,5 +8,17 @@ test.describe('Dashboard', () => {
     await dashboardPage.pageForTest.waitForLoadState('networkidle');
 
     await dashboardPage.expectAllMenuItemsVisible();
+  });
+
+  test('@smoke @e2e Dashboard page loads with welcome message', async ({
+    dashboardPage,
+    page,
+  }) => {
+    await dashboardPage.goto('/');
+    await dashboardPage.pageForTest.waitForLoadState('networkidle');
+
+    await expect(page.getByText(/Welcome back|Here's what's happening with your workspace/i).first()).toBeVisible({
+      timeout: 5_000,
+    });
   });
 });

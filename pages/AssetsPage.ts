@@ -71,6 +71,27 @@ export class AssetsPage extends BasePage {
     return items.map((s) => s.trim()).filter(Boolean);
   }
 
+  /** New → Create Folder. Caller must handle modal (cancel/confirm). */
+  async clickCreateFolder(): Promise<void> {
+    await this.clickNew();
+    await this.page.getByRole('menuitem', { name: /create folder/i }).click();
+    await new Promise((r) => setTimeout(r, 500));
+  }
+
+  /** New → New Collection. Caller must handle modal (cancel/confirm). */
+  async clickNewCollection(): Promise<void> {
+    await this.clickNew();
+    await this.page.getByRole('menuitem', { name: /new collection/i }).click();
+    await new Promise((r) => setTimeout(r, 500));
+  }
+
+  /** Close modal/dialog via Cancel button. */
+  async cancelModal(): Promise<void> {
+    const cancelBtn = this.page.getByRole('button', { name: /cancel/i }).first();
+    await cancelBtn.waitFor({ state: 'visible', timeout: 5_000 });
+    await cancelBtn.click();
+  }
+
   /**
    * Upload file without opening the Windows file dialog.
    * Clicks File upload to open modal, then setInputFiles on the input directly (no click on input = no dialog).
