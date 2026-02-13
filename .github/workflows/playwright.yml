@@ -67,6 +67,8 @@ jobs:
         continue-on-error: true
         env:
           ENV: staging
+          RUN_ID: ${{ github.run_id }}
+          RUN_NUMBER: ${{ github.run_number }}
           BASE_URL: ${{ secrets.STAGING_URL || 'https://app.staging.archivor.io' }}
           HEADLESS: true
           TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
@@ -111,6 +113,8 @@ jobs:
         continue-on-error: true
         env:
           ENV: prod
+          RUN_ID: ${{ github.run_id }}
+          RUN_NUMBER: ${{ github.run_number }}
           BASE_URL: ${{ secrets.PROD_URL || secrets.STAGING_URL || 'https://app.staging.archivor.io' }}
           HEADLESS: true
           TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
@@ -160,6 +164,8 @@ jobs:
         continue-on-error: true
         env:
           ENV: ${{ github.event.inputs.environment }}
+          RUN_ID: ${{ github.run_id }}
+          RUN_NUMBER: ${{ github.run_number }}
           BASE_URL: ${{ github.event.inputs.environment == 'prod' && secrets.PROD_URL || secrets.STAGING_URL || 'https://app.staging.archivor.io' }}
           HEADLESS: true
           TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
