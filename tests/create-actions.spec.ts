@@ -2,8 +2,7 @@ import { test, expect } from '../fixtures';
 
 test.describe('Create actions', () => {
   test('@e2e @smoke Create Folder opens modal', async ({ assetsPage, page }) => {
-    await assetsPage.goto('/');
-    await assetsPage.pageForTest.waitForLoadState('networkidle');
+    await assetsPage.gotoAndWaitForReady('/');
 
     await assetsPage.clickCreateFolder();
 
@@ -15,8 +14,7 @@ test.describe('Create actions', () => {
   });
 
   test('@e2e @smoke New Collection opens modal', async ({ assetsPage, page }) => {
-    await assetsPage.goto('/');
-    await assetsPage.pageForTest.waitForLoadState('networkidle');
+    await assetsPage.gotoAndWaitForReady('/');
 
     await assetsPage.clickNewCollection();
 
@@ -28,8 +26,7 @@ test.describe('Create actions', () => {
   });
 
   test('@e2e New menu closes on Escape', async ({ assetsPage }) => {
-    await assetsPage.goto('/');
-    await assetsPage.pageForTest.waitForLoadState('networkidle');
+    await assetsPage.gotoAndWaitForReady('/');
 
     await assetsPage.clickNew();
     const menu = assetsPage.page.getByRole('menu');

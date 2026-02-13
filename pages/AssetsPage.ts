@@ -60,7 +60,7 @@ export class AssetsPage extends BasePage {
   async clickNew(): Promise<void> {
     await this.waitForElement(this.newButton);
     await this.clickElement(this.newButton);
-    await new Promise((r) => setTimeout(r, 500));
+    await this.page.getByRole('menu').waitFor({ state: 'visible', timeout: 5_000 });
   }
 
   /** Opens New menu, returns menu item labels, then closes menu. */
@@ -75,14 +75,14 @@ export class AssetsPage extends BasePage {
   async clickCreateFolder(): Promise<void> {
     await this.clickNew();
     await this.page.getByRole('menuitem', { name: /create folder/i }).click();
-    await new Promise((r) => setTimeout(r, 500));
+    await this.page.getByRole('dialog').waitFor({ state: 'visible', timeout: 5_000 });
   }
 
   /** New → New Collection. Caller must handle modal (cancel/confirm). */
   async clickNewCollection(): Promise<void> {
     await this.clickNew();
     await this.page.getByRole('menuitem', { name: /new collection/i }).click();
-    await new Promise((r) => setTimeout(r, 500));
+    await this.page.getByRole('dialog').waitFor({ state: 'visible', timeout: 5_000 });
   }
 
   /** Close modal/dialog via Cancel button. */
@@ -100,7 +100,7 @@ export class AssetsPage extends BasePage {
     const fullPath = path.isAbsolute(filePath) ? filePath : path.resolve(process.cwd(), filePath);
     await this.fileUploadButton.waitFor({ state: 'visible', timeout: 10_000 });
     await this.fileUploadButton.click();
-    await new Promise((r) => setTimeout(r, 300));
+    await this.fileInput.waitFor({ state: 'attached', timeout: 5_000 });
     await this.fileInput.setInputFiles(fullPath);
   }
 
@@ -120,10 +120,12 @@ export class AssetsPage extends BasePage {
   async goToAllAssets(): Promise<void> {
     await this.waitForElement(this.allAssetsLink);
     await this.clickElement(this.allAssetsLink);
+    await this.waitForReady();
   }
 
   async refreshPage(): Promise<void> {
     await this.pageForTest.reload();
+    await this.waitForReady();
   }
 
   async openRowMenu(fileName: string): Promise<void> {

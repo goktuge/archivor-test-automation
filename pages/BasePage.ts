@@ -8,7 +8,7 @@ export class BasePage {
     protected baseURL: string = ''
   ) {}
 
-  /** Expose page for tests that need direct Playwright APIs (e.g. waitForLoadState). */
+  /** Expose page for tests that need direct Playwright APIs. Prefer waitForReady() for load state. */
   get pageForTest(): Page {
     return this.page;
   }
@@ -39,6 +39,11 @@ export class BasePage {
   }
 
   // ─── Reusable actions ───────────────────────────────────────────────────────
+
+  /** Wait for page to reach domcontentloaded (faster than networkidle). */
+  async waitForReady(): Promise<void> {
+    await this.page.waitForLoadState('domcontentloaded');
+  }
 
   async clickElement(locator: Locator, options?: { timeout?: number }): Promise<void> {
     await this.withErrorHandling(async () => {
@@ -101,6 +106,12 @@ export class BasePage {
     await this.withErrorHandling(async () => {
       await this.page.goto(url);
     }, `goto: ${url}`);
+  }
+
+  /** Navigate to path and wait for domcontentloaded. Use when page must be ready before next action. */
+  async gotoAndWaitForReady(path: string = ''): Promise<void> {
+    await this.goto(path);
+    await this.waitForReady();
   }
 
   // ─── Error handling wrapper ──────────────────────────────────────────────────

@@ -38,7 +38,7 @@ export class DashboardPage extends BasePage {
     const btn = this.expandSidebarButton;
     if (await btn.isVisible()) {
       await btn.click();
-      await new Promise((r) => setTimeout(r, 300));
+      await this.menuLinkByHref('home').waitFor({ state: 'attached', timeout: 5_000 });
     }
   }
 
@@ -51,7 +51,7 @@ export class DashboardPage extends BasePage {
     await this.expandSidebar();
     const link = this.menuLinkByHref(section);
     await link.click();
-    await this.page.waitForLoadState('networkidle');
+    await this.waitForReady();
   }
 
   /**
@@ -64,7 +64,7 @@ export class DashboardPage extends BasePage {
       const link = this.menuLinkByHref(href);
       await link.waitFor({ state: 'visible', timeout: 5_000 });
       const labelPattern = new RegExp(labels.join('|'), 'i');
-      await this.navMenu.getByText(labelPattern).first().waitFor({ state: 'visible', timeout: 3_000 });
+      await this.navMenu.getByText(labelPattern).first().waitFor({ state: 'visible', timeout: 5_000 });
     }
   }
 }

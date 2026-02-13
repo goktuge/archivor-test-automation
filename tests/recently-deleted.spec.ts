@@ -1,12 +1,11 @@
-import { test, expect } from '../fixtures';
+import { test } from '../fixtures';
+import { expectSectionLoaded } from '../utils/test-helpers';
 
 test.describe('Recently deleted', () => {
   test('@smoke @e2e Recently deleted page loads', async ({ dashboardPage, page }) => {
-    await dashboardPage.goto('/');
-    await dashboardPage.pageForTest.waitForLoadState('networkidle');
+    await dashboardPage.gotoAndWaitForReady('/');
 
     await dashboardPage.gotoSection('trash');
-    await expect(page).toHaveURL(/trash/);
-    await expect(page.getByText(/Recently deleted/i).first()).toBeVisible({ timeout: 5_000 });
+    await expectSectionLoaded(page, /trash/, /Recently deleted/i);
   });
 });

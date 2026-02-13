@@ -2,8 +2,7 @@ import { test, expect } from '../fixtures';
 
 test.describe('App shell', () => {
   test('@smoke @e2e Session persists after navigation', async ({ dashboardPage, page }) => {
-    await dashboardPage.goto('/');
-    await dashboardPage.pageForTest.waitForLoadState('networkidle');
+    await dashboardPage.gotoAndWaitForReady('/');
 
     // Navigate through sections
     await dashboardPage.gotoSection('assets');
@@ -16,17 +15,14 @@ test.describe('App shell', () => {
   });
 
   test('@smoke @e2e New button is visible on dashboard', async ({ assetsPage }) => {
-    await assetsPage.goto('/');
-    await assetsPage.pageForTest.waitForLoadState('networkidle');
+    await assetsPage.gotoAndWaitForReady('/');
 
     await expect(assetsPage.newButton).toBeVisible();
   });
 
   test('@smoke @e2e New button is visible on All assets page', async ({ assetsPage }) => {
-    await assetsPage.goto('/');
-    await assetsPage.pageForTest.waitForLoadState('networkidle');
+    await assetsPage.gotoAndWaitForReady('/');
     await assetsPage.goToAllAssets();
-    await assetsPage.pageForTest.waitForLoadState('networkidle');
 
     await expect(assetsPage.newButton).toBeVisible();
   });

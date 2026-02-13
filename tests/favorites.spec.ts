@@ -1,12 +1,11 @@
-import { test, expect } from '../fixtures';
+import { test } from '../fixtures';
+import { expectSectionLoaded } from '../utils/test-helpers';
 
 test.describe('My favorites', () => {
   test('@smoke @e2e Favorites page loads', async ({ dashboardPage, page }) => {
-    await dashboardPage.goto('/');
-    await dashboardPage.pageForTest.waitForLoadState('networkidle');
+    await dashboardPage.gotoAndWaitForReady('/');
 
     await dashboardPage.gotoSection('favorites');
-    await expect(page).toHaveURL(/favorite/);
-    await expect(page.getByText(/Favorites/i).first()).toBeVisible({ timeout: 5_000 });
+    await expectSectionLoaded(page, /favorite/, /Favorites/i);
   });
 });

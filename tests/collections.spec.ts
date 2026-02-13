@@ -1,12 +1,11 @@
-import { test, expect } from '../fixtures';
+import { test } from '../fixtures';
+import { expectSectionLoaded } from '../utils/test-helpers';
 
 test.describe('Collections', () => {
   test('@smoke @e2e Collections page loads', async ({ dashboardPage, page }) => {
-    await dashboardPage.goto('/');
-    await dashboardPage.pageForTest.waitForLoadState('networkidle');
+    await dashboardPage.gotoAndWaitForReady('/');
 
     await dashboardPage.gotoSection('collections');
-    await expect(page).toHaveURL(/collection/);
-    await expect(page.getByText(/Collections/i).first()).toBeVisible({ timeout: 5_000 });
+    await expectSectionLoaded(page, /collection/, /Collections/i);
   });
 });

@@ -1,52 +1,58 @@
+import fs from 'fs';
 import path from 'path';
 import { test, expect } from '../fixtures';
 import { env } from '../config/env.config';
-
-const TEST_FILE = 'test.txt';
 
 test.describe('File upload and delete', () => {
   test('@e2e @smoke Upload file, verify in All assets, then delete', async ({
     loginPage,
     assetsPage,
-  }) => {
-    // 1. Login
-    await loginPage.goto(env.loginPath);
-    await loginPage.pageForTest.waitForLoadState('networkidle');
-    await loginPage.login(env.testUserEmail, env.testUserPassword);
-    const loggedIn = await loginPage.isLoggedIn();
-    expect(loggedIn).toBe(true);
+  }, testInfo) => {
+    const uniqueFileName = `test-${testInfo.parallelIndex}-${Date.now()}`;
+    const sourcePath = path.join('resources', 'test.txt');
+    const tempDir = path.join('test-results', 'upload-files');
+    const uploadPath = path.join(tempDir, `${uniqueFileName}.txt`);
 
-    // 2. Wait for dashboard to load, then click New -> File upload
-    await assetsPage.goto('/');
-    await assetsPage.pageForTest.waitForLoadState('networkidle');
-    await assetsPage.clickNew();
+    fs.mkdirSync(tempDir, { recursive: true });
+    fs.copyFileSync(sourcePath, uploadPath);
 
-    // 3. Upload test.txt (without opening Windows file dialog)
-    const filePath = path.join('resources', TEST_FILE);
-    await assetsPage.uploadFileWithoutDialog(filePath);
+    try {
+      // 1. Login
+      await loginPage.gotoAndWaitForReady(env.loginPath);
+      await loginPage.login(env.testUserEmail, env.testUserPassword);
+      const loggedIn = await loginPage.isLoggedIn();
+      expect(loggedIn).toBe(true);
 
-    // 4. Wait for "1 of 1 completed" or file in list
-    await assetsPage.waitForUploadComplete(TEST_FILE);
+      // 2. Wait for dashboard to load, then click New -> File upload
+      await assetsPage.gotoAndWaitForReady('/');
+      await assetsPage.clickNew();
 
-    // 5. Click All assets in left menu, refresh page
-    await assetsPage.goToAllAssets();
-    await assetsPage.refreshPage();
-    await assetsPage.pageForTest.waitForLoadState('networkidle');
+      // 3. Upload file (without opening Windows file dialog)
+      await assetsPage.uploadFileWithoutDialog(uploadPath);
 
-    // 6. Verify test.txt is in the list
-    const isInList = await assetsPage.isFileInList(TEST_FILE);
-    expect(isInList).toBe(true);
+      // 4. Wait for "1 of 1 completed" or file in list
+      await assetsPage.waitForUploadComplete(uniqueFileName);
 
-    // 7. Click three dots on test.txt row -> Delete
-    await assetsPage.openRowMenu(TEST_FILE);
-    await assetsPage.clickDelete();
+      // 5. Click All assets in left menu, refresh page
+      await assetsPage.goToAllAssets();
+      await assetsPage.refreshPage();
 
-    // 8. In modal, click Delete
-    await assetsPage.confirmDelete();
+      // 6. Verify file is in the list
+      const row = assetsPage.rowByFileName(uniqueFileName);
+      await expect(row).toBeVisible({ timeout: 10_000 });
 
-    // 9. Verify test.txt is removed from list
-    await assetsPage.pageForTest.waitForLoadState('networkidle');
-    const row = assetsPage.rowByFileName(TEST_FILE);
-    await expect(row).toBeHidden({ timeout: 10_000 });
+      // 7. Click three dots on row -> Delete
+      await assetsPage.openRowMenu(uniqueFileName);
+      await assetsPage.clickDelete();
+
+      // 8. In modal, click Delete
+      await assetsPage.confirmDelete();
+
+      // 9. Verify file is removed from list
+      await assetsPage.waitForReady();
+      await expect(assetsPage.rowByFileName(uniqueFileName)).toBeHidden({ timeout: 10_000 });
+    } finally {
+      try { fs.unlinkSync(uploadPath); } catch { /* ignore */ }
+    }
   });
 });

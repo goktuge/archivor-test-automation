@@ -1,34 +1,7 @@
 import type { Page } from '@playwright/test';
-import { test as base, expect as baseExpect } from '@playwright/test';
+import { test as base } from '@playwright/test';
 import { LoginPage } from '../pages';
 import { env } from '../config/env.config';
-
-// ─── Custom matchers ─────────────────────────────────────────────────────────
-
-const customMatchers = {
-  toBeWithinRange(received: number, floor: number, ceiling: number) {
-    const pass = received >= floor && received <= ceiling;
-    return {
-      message: () =>
-        pass
-          ? `expected ${received} not to be within range ${floor} - ${ceiling}`
-          : `expected ${received} to be within range ${floor} - ${ceiling}`,
-      pass,
-    };
-  },
-  toBeValidEmail(received: string) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const pass = emailRegex.test(received);
-    return {
-      message: () =>
-        pass ? `expected ${received} not to be a valid email` : `expected ${received} to be a valid email`,
-      pass,
-    };
-  },
-};
-
-// Extend expect with custom matchers
-const expect = baseExpect.extend(customMatchers);
 
 // ─── Base fixtures ──────────────────────────────────────────────────────────
 
@@ -61,4 +34,4 @@ export const test = base.extend<{
   },
 });
 
-export { expect };
+export { expect } from '@playwright/test';
