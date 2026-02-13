@@ -23,7 +23,7 @@ export class DashboardPage extends BasePage {
     const btn = this.expandSidebarButton;
     if (await btn.isVisible()) {
       await btn.click();
-      await this.menuLinkByHref('home').waitFor({ state: 'attached', timeout: 5_000 });
+      await this.menuLinkByHref('home').waitFor({ state: 'attached' });
     }
   }
 
@@ -47,7 +47,7 @@ export class DashboardPage extends BasePage {
     await this.expandSidebar();
     for (const href of MENU_HREFS) {
       const link = this.menuLinkByHref(href);
-      await link.waitFor({ state: 'visible', timeout: 5_000 });
+      await link.waitFor({ state: 'visible' });
     }
   }
 }

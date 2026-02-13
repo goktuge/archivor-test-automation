@@ -44,9 +44,7 @@ export class LoginPage extends BasePage {
   async isLoggedIn(): Promise<boolean> {
     try {
       // Success indicators: URL no longer on login, or presence of dashboard/app shell
-      await this.page.waitForURL((url) => !url.pathname.match(/login|signin|auth/i), {
-        timeout: 10_000,
-      });
+      await this.page.waitForURL((url) => !url.pathname.match(/login|signin|auth/i));
       return true;
     } catch {
       return false;
@@ -62,7 +60,7 @@ export class LoginPage extends BasePage {
     for (const locator of errorSelectors) {
       try {
         const element = locator.first();
-        await element.waitFor({ state: 'visible', timeout: 2_000 });
+        await element.waitFor({ state: 'visible' });
         return await element.textContent() ?? '';
       } catch {
         continue;

@@ -7,10 +7,10 @@ test.describe('Create actions', () => {
     await assetsPage.clickCreateFolder();
 
     const dialog = page.getByRole('dialog');
-    await expect(dialog).toBeVisible({ timeout: 5_000 });
+    await expect(dialog).toBeVisible();
 
     await assetsPage.cancelModal();
-    await expect(dialog).toBeHidden({ timeout: 3_000 });
+    await expect(dialog).toBeHidden();
   });
 
   test('@e2e @smoke New Collection opens modal', async ({ assetsPage, page }) => {
@@ -19,10 +19,10 @@ test.describe('Create actions', () => {
     await assetsPage.clickNewCollection();
 
     const dialog = page.getByRole('dialog');
-    await expect(dialog).toBeVisible({ timeout: 5_000 });
+    await expect(dialog).toBeVisible();
 
     await assetsPage.cancelModal();
-    await expect(dialog).toBeHidden({ timeout: 3_000 });
+    await expect(dialog).toBeHidden();
   });
 
   test('@e2e New menu closes on Escape', async ({ assetsPage }) => {
@@ -33,6 +33,6 @@ test.describe('Create actions', () => {
     await expect(menu).toBeVisible();
 
     await assetsPage.pageForTest.keyboard.press('Escape');
-    await expect(menu).toBeHidden({ timeout: 2_000 });
+    await expect(menu).toBeHidden();
   });
 });

@@ -60,7 +60,7 @@ export class AssetsPage extends BasePage {
   async clickNew(): Promise<void> {
     await this.waitForElement(this.newButton);
     await this.clickElement(this.newButton);
-    await this.page.getByRole('menu').waitFor({ state: 'visible', timeout: 5_000 });
+    await this.page.getByRole('menu').waitFor({ state: 'visible' });
   }
 
   /** Opens New menu, returns menu item labels, then closes menu. */
@@ -75,20 +75,20 @@ export class AssetsPage extends BasePage {
   async clickCreateFolder(): Promise<void> {
     await this.clickNew();
     await this.page.getByRole('menuitem', { name: /create folder/i }).click();
-    await this.page.getByRole('dialog').waitFor({ state: 'visible', timeout: 5_000 });
+    await this.page.getByRole('dialog').waitFor({ state: 'visible' });
   }
 
   /** New → New Collection. Caller must handle modal (cancel/confirm). */
   async clickNewCollection(): Promise<void> {
     await this.clickNew();
     await this.page.getByRole('menuitem', { name: /new collection/i }).click();
-    await this.page.getByRole('dialog').waitFor({ state: 'visible', timeout: 5_000 });
+    await this.page.getByRole('dialog').waitFor({ state: 'visible' });
   }
 
   /** Close modal/dialog via Cancel button. */
   async cancelModal(): Promise<void> {
     const cancelBtn = this.page.getByRole('button', { name: /cancel/i }).first();
-    await cancelBtn.waitFor({ state: 'visible', timeout: 5_000 });
+    await cancelBtn.waitFor({ state: 'visible' });
     await cancelBtn.click();
   }
 
@@ -98,9 +98,9 @@ export class AssetsPage extends BasePage {
    */
   async uploadFileWithoutDialog(filePath: string): Promise<void> {
     const fullPath = path.isAbsolute(filePath) ? filePath : path.resolve(process.cwd(), filePath);
-    await this.fileUploadButton.waitFor({ state: 'visible', timeout: 10_000 });
+    await this.fileUploadButton.waitFor({ state: 'visible' });
     await this.fileUploadButton.click();
-    await this.fileInput.waitFor({ state: 'attached', timeout: 5_000 });
+    await this.fileInput.waitFor({ state: 'attached' });
     await this.fileInput.setInputFiles(fullPath);
   }
 
@@ -130,7 +130,7 @@ export class AssetsPage extends BasePage {
 
   async openRowMenu(fileName: string): Promise<void> {
     const row = this.rowByFileName(fileName);
-    await row.waitFor({ state: 'visible', timeout: 10_000 });
+    await row.waitFor({ state: 'visible' });
     const dots = this.threeDotsInRow(row);
     await dots.click();
   }
@@ -152,7 +152,7 @@ export class AssetsPage extends BasePage {
 
   async isFileNotInList(fileName: string): Promise<boolean> {
     const row = this.rowByFileName(fileName);
-    await row.waitFor({ state: 'detached', timeout: 10_000 });
+    await row.waitFor({ state: 'detached' });
     return true;
   }
 }

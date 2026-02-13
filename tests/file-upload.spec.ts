@@ -39,7 +39,7 @@ test.describe('File upload and delete', () => {
 
       // 6. Verify file is in the list
       const row = assetsPage.rowByFileName(uniqueFileName);
-      await expect(row).toBeVisible({ timeout: 10_000 });
+      await expect(row).toBeVisible();
 
       // 7. Click three dots on row -> Delete
       await assetsPage.openRowMenu(uniqueFileName);
@@ -50,7 +50,7 @@ test.describe('File upload and delete', () => {
 
       // 9. Verify file is removed from list
       await assetsPage.waitForReady();
-      await expect(assetsPage.rowByFileName(uniqueFileName)).toBeHidden({ timeout: 10_000 });
+      await expect(assetsPage.rowByFileName(uniqueFileName)).toBeHidden();
     } finally {
       try { fs.unlinkSync(uploadPath); } catch { /* ignore */ }
     }

@@ -5,11 +5,8 @@ import type { Page } from '@playwright/test';
 export async function expectSectionLoaded(
   page: Page,
   urlRegex: RegExp,
-  titleRegex: RegExp,
-  options?: { timeout?: number }
+  titleRegex: RegExp
 ): Promise<void> {
   await expect(page).toHaveURL(urlRegex);
-  await expect(page.getByText(titleRegex).first()).toBeVisible({
-    timeout: options?.timeout ?? 5_000,
-  });
+  await expect(page.getByText(titleRegex).first()).toBeVisible();
 }

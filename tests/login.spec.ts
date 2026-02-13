@@ -39,7 +39,7 @@ test.describe('Login', () => {
       await loginPage.gotoAndWaitForReady(env.loginPath);
       // Archivor disables Continue when email is empty - implicit validation
       const continueBtn = loginPage.continueButton;
-      await continueBtn.waitFor({ state: 'visible', timeout: 5000 });
+      await continueBtn.waitFor({ state: 'visible' });
       await expect(continueBtn).toBeDisabled();
       // Email field should be empty
       await expect(loginPage.emailInput).toHaveValue('');

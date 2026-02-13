@@ -77,7 +77,7 @@ export class BasePage {
     await this.withErrorHandling(async () => {
       await locator.waitFor({
         state: options?.state ?? 'visible',
-        timeout: options?.timeout ?? 10_000,
+        ...(options?.timeout !== undefined && { timeout: options.timeout }),
       });
     }, `waitForElement`);
     return locator;

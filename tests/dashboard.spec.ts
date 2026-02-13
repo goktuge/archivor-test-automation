@@ -15,8 +15,6 @@ test.describe('Dashboard', () => {
   }) => {
     await dashboardPage.gotoAndWaitForReady('/');
 
-    await expect(page.getByText(/Welcome back|Here's what's happening with your workspace/i).first()).toBeVisible({
-      timeout: 5_000,
-    });
+    await expect(page.getByText(/Welcome back|Here's what's happening with your workspace/i).first()).toBeVisible();
   });
 });

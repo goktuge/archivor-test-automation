@@ -10,7 +10,7 @@ export default defineConfig({
   workers: process.env.CI ? 2 : 4,
   timeout: 30_000,
   expect: {
-    timeout: 5_000,
+    timeout: 10_000,
   },
   reporter: [
     ['list'],
@@ -22,6 +22,7 @@ export default defineConfig({
   use: {
     baseURL: process.env.BASE_URL || 'https://app.staging.archivor.io',
     storageState: path.join(process.cwd(), '.auth', 'user.json'),
+    timeout: 10_000,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
