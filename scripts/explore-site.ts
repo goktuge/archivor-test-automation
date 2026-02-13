@@ -29,15 +29,15 @@ async function explore() {
     await page.waitForLoadState('networkidle');
 
     // Step 1: Email
-    const emailInput = page.getByLabel(/email|e-posta/i).or(page.getByPlaceholder(/email|e-posta/i)).first();
+    const emailInput = page.getByLabel(/email/i).or(page.getByPlaceholder(/email/i)).first();
     await emailInput.fill(EMAIL);
-    await page.getByRole('button', { name: /continue|devam/i }).first().click();
+    await page.getByRole('button', { name: /continue/i }).first().click();
 
     // Step 2: Password
-    const passwordInput = page.getByPlaceholder(/password|şifre/i).or(page.locator('input[type="password"]')).first();
+    const passwordInput = page.getByPlaceholder(/password/i).or(page.locator('input[type="password"]')).first();
     await passwordInput.waitFor({ state: 'visible', timeout: 5000 });
     await passwordInput.fill(PASSWORD);
-    await page.getByRole('button', { name: /log in|login|giriş/i }).first().click();
+    await page.getByRole('button', { name: /log in|login/i }).first().click();
 
     await page.waitForURL((url) => !url.pathname.match(/login|signin|auth/i), { timeout: 15000 });
     console.log('✅ Logged in');

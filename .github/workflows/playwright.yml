@@ -33,7 +33,7 @@ env:
   INFLUX_URL: ${{ secrets.INFLUX_CLOUD_URL }}
   INFLUX_TOKEN: ${{ secrets.INFLUX_CLOUD_TOKEN }}
   INFLUX_ORG: ${{ secrets.INFLUX_CLOUD_ORG }}
-  INFLUX_BUCKET: test-metrics
+  INFLUX_BUCKET: archivor-test-metrics
 
 jobs:
   smoke-tests:

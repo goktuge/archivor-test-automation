@@ -9,25 +9,25 @@ export class LoginPage extends BasePage {
   // ─── Locators (label / placeholder / text) ───────────────────────────────────
 
   get emailInput(): Locator {
-    return this.getByLabel(/email|e-posta|e-mail/i)
-      .or(this.getByPlaceholder(/email|e-posta|e-mail|enter.*email/i))
-      .or(this.page.getByRole('textbox', { name: /email|e-posta/i }))
+    return this.getByLabel(/email|e-mail/i)
+      .or(this.getByPlaceholder(/email|e-mail|enter.*email/i))
+      .or(this.page.getByRole('textbox', { name: /email/i }))
       .first();
   }
 
   get passwordInput(): Locator {
-    return this.getByLabel(/password|şifre|parola/i)
-      .or(this.getByPlaceholder(/password|şifre|parola/i))
+    return this.getByLabel(/password/i)
+      .or(this.getByPlaceholder(/password/i))
       .or(this.page.locator('input[type="password"]'))
       .first();
   }
 
   get continueButton(): Locator {
-    return this.getByRole('button', { name: /continue|devam|ilkeri/i }).first();
+    return this.getByRole('button', { name: /continue/i }).first();
   }
 
   get loginButton(): Locator {
-    return this.getByRole('button', { name: /log in|login|sign in|signin|giriş|giriş yap|submit|continue/i }).first();
+    return this.getByRole('button', { name: /log in|login|sign in|signin|submit|continue/i }).first();
   }
 
   // ─── Actions ────────────────────────────────────────────────────────────────
@@ -56,7 +56,7 @@ export class LoginPage extends BasePage {
   async getErrorMessage(): Promise<string> {
     const errorSelectors = [
       this.page.getByRole('alert'),
-      this.getByText(/invalid|incorrect|error|wrong|failed|geçersiz|hatalı|must|required|include|character/i),
+      this.getByText(/invalid|incorrect|error|wrong|failed|must|required|include|character/i),
     ];
 
     for (const locator of errorSelectors) {
