@@ -46,6 +46,14 @@ export class DashboardPage extends BasePage {
     return this.navMenu.locator(`a[href*="${href}"]`).first();
   }
 
+  /** Navigate to a section via left menu. */
+  async gotoSection(section: 'home' | 'assets' | 'favorites' | 'collections' | 'trash'): Promise<void> {
+    await this.expandSidebar();
+    const link = this.menuLinkByHref(section);
+    await link.click();
+    await this.page.waitForLoadState('networkidle');
+  }
+
   /**
    * Verifies all 5 menu items exist and show expected text.
    * Expands sidebar first, then checks each menu item label in nav.

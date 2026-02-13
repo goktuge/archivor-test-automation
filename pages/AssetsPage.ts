@@ -63,6 +63,14 @@ export class AssetsPage extends BasePage {
     await new Promise((r) => setTimeout(r, 500));
   }
 
+  /** Opens New menu, returns menu item labels, then closes menu. */
+  async getNewMenuOptions(): Promise<string[]> {
+    await this.clickNew();
+    const items = await this.page.getByRole('menuitem').allTextContents();
+    await this.page.keyboard.press('Escape');
+    return items.map((s) => s.trim()).filter(Boolean);
+  }
+
   /**
    * Upload file without opening the Windows file dialog.
    * Clicks File upload to open modal, then setInputFiles on the input directly (no click on input = no dialog).
