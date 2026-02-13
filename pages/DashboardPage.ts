@@ -1,23 +1,8 @@
 import { Page, Locator } from '@playwright/test';
 import { BasePage } from './BasePage';
 
-/** Expected left menu item labels. Nav links may show text in tooltip on hover. */
-const MENU_ITEMS = [
-  'Dashboard',
-  'All assets',
-  'My favorites',
-  'Collections',
-  'Recently deleted',
-] as const;
-
-/** Href -> possible labels (tooltip may vary). */
-const MENU_MAPPING: Array<{ href: string; labels: string[] }> = [
-  { href: 'home', labels: ['Dashboard', 'Home'] },
-  { href: 'assets', labels: ['All assets', 'Assets'] },
-  { href: 'favorites', labels: ['My favorites', 'Favorites'] },
-  { href: 'collections', labels: ['Collections', 'Collection'] },
-  { href: 'trash', labels: ['Recently deleted', 'Trash'] },
-];
+/** Href for each expected nav item. Sidebar may show icons only (labels in tooltip). */
+const MENU_HREFS = ['home', 'assets', 'favorites', 'collections', 'trash'] as const;
 
 export class DashboardPage extends BasePage {
   constructor(page: Page, baseURL: string = '') {
@@ -55,16 +40,14 @@ export class DashboardPage extends BasePage {
   }
 
   /**
-   * Verifies all 5 menu items exist and show expected text.
-   * Expands sidebar first, then checks each menu item label in nav.
+   * Verifies all 5 menu items exist and are visible.
+   * Expands sidebar first (for gotoSection). Sidebar may show icons only; we assert links by href.
    */
   async expectAllMenuItemsVisible(): Promise<void> {
     await this.expandSidebar();
-    for (const { href, labels } of MENU_MAPPING) {
+    for (const href of MENU_HREFS) {
       const link = this.menuLinkByHref(href);
       await link.waitFor({ state: 'visible', timeout: 5_000 });
-      const labelPattern = new RegExp(labels.join('|'), 'i');
-      await this.navMenu.getByText(labelPattern).first().waitFor({ state: 'visible', timeout: 5_000 });
     }
   }
 }

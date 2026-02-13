@@ -29,10 +29,10 @@ test.describe('Create actions', () => {
     await assetsPage.gotoAndWaitForReady('/');
 
     await assetsPage.clickNew();
-    const menu = assetsPage.page.getByRole('menu');
+    const menu = assetsPage.pageForTest.getByRole('menu');
     await expect(menu).toBeVisible();
 
-    await assetsPage.page.keyboard.press('Escape');
+    await assetsPage.pageForTest.keyboard.press('Escape');
     await expect(menu).toBeHidden({ timeout: 2_000 });
   });
 });
