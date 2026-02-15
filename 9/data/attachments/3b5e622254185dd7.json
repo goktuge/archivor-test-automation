@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "totalDuration": 21101
+  },
+  "test": {
+    "title": "@e2e @smoke All main sections are navigable with correct page titles",
+    "status": "failed",
+    "duration": 21101,
+    "browser": "webkit"
+  }
+}
