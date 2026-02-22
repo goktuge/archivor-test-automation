@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 5401
+  },
+  "test": {
+    "title": "@smoke @e2e All assets page loads",
+    "status": "passed",
+    "duration": 5401,
+    "browser": "chromium"
+  }
+}

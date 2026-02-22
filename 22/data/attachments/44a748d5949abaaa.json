@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "totalDuration": 16771
+  },
+  "test": {
+    "title": "@smoke @e2e Dashboard page loads with welcome message",
+    "status": "failed",
+    "duration": 16771,
+    "browser": "firefox"
+  }
+}

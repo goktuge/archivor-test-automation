@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 11618
+  },
+  "test": {
+    "title": "@smoke @e2e Session persists after navigation",
+    "status": "passed",
+    "duration": 11618,
+    "browser": "firefox"
+  }
+}
