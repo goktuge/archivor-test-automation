@@ -9,7 +9,7 @@ test.describe('Dashboard', () => {
     await dashboardPage.expectAllMenuItemsVisible();
   });
 
-  test('@smoke @e2e Dashboard page loads with welcome message', async ({
+  test('@smoke @e2e cu', async ({
     dashboardPage,
     page,
   }) => {
