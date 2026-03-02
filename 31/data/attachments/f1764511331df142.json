@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 12855
+  },
+  "test": {
+    "title": "@e2e @smoke Upload file, verify in All assets, then delete",
+    "status": "passed",
+    "duration": 12855,
+    "browser": "chromium-unauth"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "totalDuration": 13297
+  },
+  "test": {
+    "title": "@smoke @e2e Overview tab loads with org name and metrics",
+    "status": "failed",
+    "duration": 13297,
+    "browser": "webkit"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 4325
+  },
+  "test": {
+    "title": "@e2e @auth Login with empty credentials shows validation",
+    "status": "passed",
+    "duration": 821,
+    "browser": "chromium-unauth"
+  }
+}

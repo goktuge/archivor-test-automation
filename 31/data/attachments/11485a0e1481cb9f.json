@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 8115
+  },
+  "test": {
+    "title": "@smoke @e2e cu",
+    "status": "passed",
+    "duration": 8115,
+    "browser": "webkit"
+  }
+}

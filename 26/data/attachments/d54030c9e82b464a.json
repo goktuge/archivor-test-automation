@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "totalDuration": 12188
+  },
+  "test": {
+    "title": "@smoke @e2e New button is visible on dashboard",
+    "status": "failed",
+    "duration": 12188,
+    "browser": "chromium"
+  }
+}

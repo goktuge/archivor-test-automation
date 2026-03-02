@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "totalDuration": 29999
+  },
+  "test": {
+    "title": "@e2e @smoke New Collection opens modal",
+    "status": "timedOut",
+    "duration": 29999,
+    "browser": "chromium"
+  }
+}

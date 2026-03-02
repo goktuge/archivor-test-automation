@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 2,
+    "passed": 1,
+    "failed": 1,
+    "skipped": 0,
+    "totalDuration": 37643
+  },
+  "test": {
+    "title": "@smoke @e2e New button is visible on All assets page",
+    "status": "timedOut",
+    "duration": 30000,
+    "browser": "firefox"
+  }
+}
