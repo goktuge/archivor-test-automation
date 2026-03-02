@@ -1,0 +1,6 @@
+mutation attachmentVersionCheckout($input: AttachmentVersionCheckout!){
+    attachmentVersionCheckout(input: $input){
+        message
+        success
+    }
+}

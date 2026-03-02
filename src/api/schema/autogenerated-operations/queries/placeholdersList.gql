@@ -1,0 +1,9 @@
+query placeholdersList($eventType: AutomationTriggerEventTypeEnum!){
+    placeholdersList(eventType: $eventType){
+        description
+        key
+        label
+        namespace
+        returnType
+    }
+}

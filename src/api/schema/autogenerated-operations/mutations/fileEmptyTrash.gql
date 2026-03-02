@@ -1,0 +1,6 @@
+mutation fileEmptyTrash($input: FileEmptyTrashInput!){
+    fileEmptyTrash(input: $input){
+        message
+        success
+    }
+}

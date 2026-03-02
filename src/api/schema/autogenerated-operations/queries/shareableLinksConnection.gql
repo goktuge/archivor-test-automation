@@ -1,0 +1,65 @@
+query shareableLinksConnection($organizationId: ID!, $after: String, $before: String, $first: Int, $last: Int){
+    shareableLinksConnection(organizationId: $organizationId, after: $after, before: $before, first: $first, last: $last){
+        edges{
+            cursor
+            node{
+                createdAt
+                createdBy{
+                    avatarUrl
+                    firstName
+                    lastName
+                }
+                expiresAt
+                id
+                resource{
+                    __typename
+                    ... on ShareableLinkAttachment {
+                        id
+                    }
+                    ... on ShareableLinkCollection {
+                        id
+                    }
+                    ... on ShareableLinkFolder {
+                        id
+                    }
+                }
+                revokedAt
+                title
+                token
+                updatedAt
+            }
+        }
+        nodes{
+            createdAt
+            createdBy{
+                avatarUrl
+                firstName
+                lastName
+            }
+            expiresAt
+            id
+            resource{
+                __typename
+                ... on ShareableLinkAttachment {
+                    id
+                }
+                ... on ShareableLinkCollection {
+                    id
+                }
+                ... on ShareableLinkFolder {
+                    id
+                }
+            }
+            revokedAt
+            title
+            token
+            updatedAt
+        }
+        pageInfo{
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+        }
+    }
+}

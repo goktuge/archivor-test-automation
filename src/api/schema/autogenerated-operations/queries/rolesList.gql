@@ -1,0 +1,16 @@
+query rolesList($organizationId: ID!){
+    rolesList(organizationId: $organizationId){
+        createdAt
+        description
+        id
+        kind
+        name
+        permissions{
+            createdAt
+            group
+            id
+            permission
+        }
+        updatedAt
+    }
+}

@@ -1,0 +1,28 @@
+mutation shareableLinkCreate($input: ShareableLinkCreateInput!){
+    shareableLinkCreate(input: $input){
+        createdAt
+        createdBy{
+            avatarUrl
+            firstName
+            lastName
+        }
+        expiresAt
+        id
+        resource{
+            __typename
+            ... on ShareableLinkAttachment {
+                id
+            }
+            ... on ShareableLinkCollection {
+                id
+            }
+            ... on ShareableLinkFolder {
+                id
+            }
+        }
+        revokedAt
+        title
+        token
+        updatedAt
+    }
+}

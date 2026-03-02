@@ -1,0 +1,6 @@
+mutation attachmentTagCreate($input: AttachmentTagCreate!){
+    attachmentTagCreate(input: $input){
+        message
+        success
+    }
+}

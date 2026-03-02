@@ -1,0 +1,8 @@
+mutation collectionUpdate($input: CollectionUpdateInput!){
+    collectionUpdate(input: $input){
+        createdAt
+        id
+        name
+        updatedAt
+    }
+}

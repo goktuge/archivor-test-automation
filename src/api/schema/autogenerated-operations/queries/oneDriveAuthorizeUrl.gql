@@ -1,0 +1,5 @@
+query oneDriveAuthorizeUrl($organizationId: ID!, $redirectUri: String!){
+    oneDriveAuthorizeUrl(organizationId: $organizationId, redirectUri: $redirectUri){
+        redirectUrl
+    }
+}

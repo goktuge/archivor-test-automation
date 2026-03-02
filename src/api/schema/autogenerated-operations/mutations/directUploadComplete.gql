@@ -1,0 +1,5 @@
+mutation directUploadComplete($input: DirectUploadCompleteInput!){
+    directUploadComplete(input: $input){
+        location
+    }
+}

@@ -1,0 +1,54 @@
+query folderShow($after: String, $before: String, $first: Int, $last: Int, $organizationId: ID!, $id: ID!){
+    folderShow(organizationId: $organizationId, id: $id){
+        activityLogs(after: $after, before: $before, first: $first, last: $last){
+            edges{
+                cursor
+                node{
+                    action
+                    createdAt
+                    id
+                    ip
+                    user{
+                        avatarUrl
+                        firstName
+                        id
+                        isDeleted
+                        lastName
+                    }
+                    userAgent
+                }
+            }
+            nodes{
+                action
+                createdAt
+                id
+                ip
+                user{
+                    avatarUrl
+                    firstName
+                    id
+                    isDeleted
+                    lastName
+                }
+                userAgent
+            }
+            pageInfo{
+                endCursor
+                hasNextPage
+                hasPreviousPage
+                startCursor
+            }
+        }
+        createdAt
+        createdBy{
+            avatarUrl
+            firstName
+            lastName
+        }
+        hasChildren
+        id
+        name
+        parentId
+        updatedAt
+    }
+}

@@ -1,0 +1,6 @@
+mutation commentDelete($input: CommentDeleteInput!){
+    commentDelete(input: $input){
+        message
+        success
+    }
+}

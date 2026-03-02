@@ -1,0 +1,6 @@
+mutation teamMemberCreate($input: TeamMemberCreateInput!){
+    teamMemberCreate(input: $input){
+        message
+        success
+    }
+}

@@ -1,0 +1,7 @@
+mutation uploadJobStart($input: UploadJobStartInput!){
+    uploadJobStart(input: $input){
+        id
+        isConflict
+        paths
+    }
+}

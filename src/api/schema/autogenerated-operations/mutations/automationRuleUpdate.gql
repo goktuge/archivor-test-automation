@@ -1,0 +1,34 @@
+mutation automationRuleUpdate($input: AutomationRuleUpdateInput!){
+    automationRuleUpdate(input: $input){
+        actions{
+            actionType
+            condition
+            id
+            kind
+            kindId
+            parameters{
+                __typename
+                ... on AutomationRuleActionSlackOauth2Parameter {
+                    channelId
+                    channelName
+                    messageTemplate
+                }
+                ... on AutomationRuleActionWebhookParameter {
+                    url
+                }
+            }
+            status
+        }
+        createdAt
+        description
+        eventTrigger{
+            condition
+            eventType
+            source
+        }
+        id
+        name
+        status
+        updatedAt
+    }
+}

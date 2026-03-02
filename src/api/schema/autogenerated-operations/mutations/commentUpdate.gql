@@ -1,0 +1,35 @@
+mutation commentUpdate($input: CommentUpdateInput!){
+    commentUpdate(input: $input){
+        body
+        children{
+            body
+            children{
+                body
+                createdAt
+                id
+                isEdited
+                updatedAt
+                user{
+                    avatarUrl
+                    firstName
+                    id
+                    lastName
+                }
+            }
+            createdAt
+            id
+            isEdited
+            updatedAt
+        }
+        createdAt
+        id
+        isEdited
+        updatedAt
+        user{
+            avatarUrl
+            firstName
+            id
+            lastName
+        }
+    }
+}

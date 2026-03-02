@@ -1,0 +1,6 @@
+mutation collectionRemoveFiles($input: CollectionRemoveFilesInput!){
+    collectionRemoveFiles(input: $input){
+        message
+        success
+    }
+}

@@ -1,0 +1,69 @@
+query downloadLinksConnection($organizationId: ID!, $after: String, $before: String, $first: Int, $last: Int){
+    downloadLinksConnection(organizationId: $organizationId, after: $after, before: $before, first: $first, last: $last){
+        edges{
+            cursor
+            node{
+                createdAt
+                createdBy{
+                    avatarUrl
+                    firstName
+                    lastName
+                }
+                fileName
+                id
+                items{
+                    createdAt
+                    entity{
+                        __typename
+                        ... on DownloadLinkAttachment {
+                            filename
+                            id
+                        }
+                        ... on DownloadLinkFolder {
+                            id
+                            name
+                        }
+                    }
+                    id
+                }
+                link
+                token
+                updatedAt
+            }
+        }
+        nodes{
+            createdAt
+            createdBy{
+                avatarUrl
+                firstName
+                lastName
+            }
+            fileName
+            id
+            items{
+                createdAt
+                entity{
+                    __typename
+                    ... on DownloadLinkAttachment {
+                        filename
+                        id
+                    }
+                    ... on DownloadLinkFolder {
+                        id
+                        name
+                    }
+                }
+                id
+            }
+            link
+            token
+            updatedAt
+        }
+        pageInfo{
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+        }
+    }
+}

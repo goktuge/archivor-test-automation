@@ -1,0 +1,37 @@
+query notificationsConnection($organizationId: ID!, $after: String, $before: String, $first: Int, $last: Int){
+    notificationsConnection(organizationId: $organizationId, after: $after, before: $before, first: $first, last: $last){
+        edges{
+            cursor
+            node{
+                actor{
+                    avatarUrl
+                    firstName
+                    id
+                    lastName
+                }
+                createdAt
+                eventType
+                id
+                readAt
+            }
+        }
+        nodes{
+            actor{
+                avatarUrl
+                firstName
+                id
+                lastName
+            }
+            createdAt
+            eventType
+            id
+            readAt
+        }
+        pageInfo{
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+        }
+    }
+}

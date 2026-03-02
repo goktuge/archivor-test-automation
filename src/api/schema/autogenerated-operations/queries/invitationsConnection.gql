@@ -1,0 +1,25 @@
+query invitationsConnection($organizationId: ID!, $teamId: ID!, $after: String, $before: String, $first: Int, $last: Int){
+    invitationsConnection(organizationId: $organizationId, teamId: $teamId, after: $after, before: $before, first: $first, last: $last){
+        edges{
+            cursor
+            node{
+                createdAt
+                email
+                id
+                message
+            }
+        }
+        nodes{
+            createdAt
+            email
+            id
+            message
+        }
+        pageInfo{
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+        }
+    }
+}

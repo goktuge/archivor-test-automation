@@ -1,0 +1,8 @@
+mutation collectionCreate($input: CollectionCreateInput!){
+    collectionCreate(input: $input){
+        createdAt
+        id
+        name
+        updatedAt
+    }
+}

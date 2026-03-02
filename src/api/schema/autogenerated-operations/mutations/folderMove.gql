@@ -1,0 +1,22 @@
+mutation folderMove($input: FolderMoveInput!){
+    folderMove(input: $input){
+        error{
+            code
+            intersectedFiles
+            message
+        }
+        folder{
+            createdAt
+            createdBy{
+                avatarUrl
+                firstName
+                lastName
+            }
+            hasChildren
+            id
+            name
+            parentId
+            updatedAt
+        }
+    }
+}

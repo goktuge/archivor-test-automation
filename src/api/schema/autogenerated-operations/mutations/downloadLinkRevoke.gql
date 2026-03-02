@@ -1,0 +1,6 @@
+mutation downloadLinkRevoke($input: DownloadLinkRevokeInput!){
+    downloadLinkRevoke(input: $input){
+        message
+        success
+    }
+}

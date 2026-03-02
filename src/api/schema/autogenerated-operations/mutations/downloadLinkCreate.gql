@@ -1,0 +1,30 @@
+mutation downloadLinkCreate($input: DownloadLinkCreateInput!){
+    downloadLinkCreate(input: $input){
+        createdAt
+        createdBy{
+            avatarUrl
+            firstName
+            lastName
+        }
+        fileName
+        id
+        items{
+            createdAt
+            entity{
+                __typename
+                ... on DownloadLinkAttachment {
+                    filename
+                    id
+                }
+                ... on DownloadLinkFolder {
+                    id
+                    name
+                }
+            }
+            id
+        }
+        link
+        token
+        updatedAt
+    }
+}

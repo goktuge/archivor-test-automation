@@ -1,0 +1,6 @@
+mutation collectionDelete($input: CollectionDeleteInput!){
+    collectionDelete(input: $input){
+        message
+        success
+    }
+}

@@ -1,0 +1,29 @@
+query organizationMemberShow($id: ID!, $organizationId: ID!){
+    organizationMemberShow(id: $id, organizationId: $organizationId){
+        id
+        invitationEmail
+        invitedAt
+        invitedBy{
+            avatarUrl
+            firstName
+            id
+            lastName
+        }
+        joinedAt
+        roles{
+            id
+            name
+        }
+        state
+        teams{
+            id
+            name
+        }
+        user{
+            avatarUrl
+            firstName
+            id
+            lastName
+        }
+    }
+}

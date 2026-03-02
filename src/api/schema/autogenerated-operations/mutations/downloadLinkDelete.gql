@@ -1,0 +1,6 @@
+mutation downloadLinkDelete($input: DownloadLinkDeleteInput!){
+    downloadLinkDelete(input: $input){
+        message
+        success
+    }
+}

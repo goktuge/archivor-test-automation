@@ -1,0 +1,6 @@
+query organizationSectorList{
+    organizationSectorList{
+        id
+        name
+    }
+}

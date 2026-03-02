@@ -15,6 +15,12 @@
     "test:ui": "playwright test --ui",
     "test:chromium": "playwright test --project=chromium",
     "report": "playwright show-report",
+    "api:fetch-schema": "node -r dotenv/config scripts/fetch-schema.js",
+    "api:test-token": "node scripts/test-api-token.js",
+    "test:api": "playwright test -c playwright.api.config.ts",
+    "test:ui": "playwright test tests/ui",
+    "gmail:token": "npx ts-node scripts/get-gmail-refresh-token.ts",
+    "test:user-factory": "playwright test -c playwright.user-factory.config.ts",
     "allure:generate": "allure generate allure-results -o allure-report --clean",
     "allure:open": "allure open allure-report"
   },
@@ -27,11 +33,15 @@
     "@types/node": "^25.2.3",
     "allure-commandline": "^2.36.0",
     "allure-playwright": "^3.4.5",
+    "playwright-graphql": "^2.2.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.9.3"
   },
   "dependencies": {
     "@influxdata/influxdb-client": "^1.35.0",
-    "dotenv": "^17.2.4"
+    "cheerio": "^1.2.0",
+    "dotenv": "^17.2.4",
+    "googleapis": "^171.4.0",
+    "nanoid": "^5.1.6"
   }
 }

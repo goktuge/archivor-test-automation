@@ -1,0 +1,6 @@
+mutation organizationMemberDelete($input: OrganizationMemberDeleteInput!){
+    organizationMemberDelete(input: $input){
+        message
+        success
+    }
+}

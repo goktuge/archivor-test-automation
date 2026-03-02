@@ -1,0 +1,238 @@
+query myActivityLogsConnection($organizationId: ID!, $after: String, $before: String, $first: Int, $last: Int){
+    myActivityLogsConnection(organizationId: $organizationId, after: $after, before: $before, first: $first, last: $last){
+        edges{
+            cursor
+            node{
+                action
+                createdAt
+                entity{
+                    __typename
+                    ... on ActivityLogAttachment {
+                        id
+                        isDeleted
+                    }
+                    ... on ActivityLogCollection {
+                        id
+                        name
+                    }
+                    ... on ActivityLogFolder {
+                        id
+                        isDeleted
+                        name
+                    }
+                    ... on ActivityLogOrganization {
+                        id
+                        isDeleted
+                        name
+                    }
+                    ... on ActivityLogTeam {
+                        id
+                        isDeleted
+                        name
+                    }
+                    ... on ActivityLogTeamMember {
+                        id
+                        isDeleted
+                    }
+                    ... on ActivityLogUser {
+                        avatarUrl
+                        firstName
+                        id
+                        isDeleted
+                        lastName
+                    }
+                }
+                groupCount
+                groupItems{
+                    action
+                    createdAt
+                    entity{
+                        __typename
+                        ... on ActivityLogAttachment {
+                            id
+                            isDeleted
+                        }
+                        ... on ActivityLogCollection {
+                            id
+                            name
+                        }
+                        ... on ActivityLogFolder {
+                            id
+                            isDeleted
+                            name
+                        }
+                        ... on ActivityLogOrganization {
+                            id
+                            isDeleted
+                            name
+                        }
+                        ... on ActivityLogTeam {
+                            id
+                            isDeleted
+                            name
+                        }
+                        ... on ActivityLogTeamMember {
+                            id
+                            isDeleted
+                        }
+                        ... on ActivityLogUser {
+                            avatarUrl
+                            firstName
+                            id
+                            isDeleted
+                            lastName
+                        }
+                    }
+                    groupCount
+                    groupItems{
+                        action
+                        createdAt
+                        entity{
+                            __typename
+                            ... on ActivityLogAttachment {
+                                id
+                                isDeleted
+                            }
+                            ... on ActivityLogCollection {
+                                id
+                                name
+                            }
+                            ... on ActivityLogFolder {
+                                id
+                                isDeleted
+                                name
+                            }
+                            ... on ActivityLogOrganization {
+                                id
+                                isDeleted
+                                name
+                            }
+                            ... on ActivityLogTeam {
+                                id
+                                isDeleted
+                                name
+                            }
+                            ... on ActivityLogTeamMember {
+                                id
+                                isDeleted
+                            }
+                            ... on ActivityLogUser {
+                                avatarUrl
+                                firstName
+                                id
+                                isDeleted
+                                lastName
+                            }
+                        }
+                        groupCount
+                        id
+                        ip
+                        userAgent
+                    }
+                    id
+                    ip
+                    userAgent
+                }
+                id
+                ip
+                userAgent
+            }
+        }
+        nodes{
+            action
+            createdAt
+            entity{
+                __typename
+                ... on ActivityLogAttachment {
+                    id
+                    isDeleted
+                }
+                ... on ActivityLogCollection {
+                    id
+                    name
+                }
+                ... on ActivityLogFolder {
+                    id
+                    isDeleted
+                    name
+                }
+                ... on ActivityLogOrganization {
+                    id
+                    isDeleted
+                    name
+                }
+                ... on ActivityLogTeam {
+                    id
+                    isDeleted
+                    name
+                }
+                ... on ActivityLogTeamMember {
+                    id
+                    isDeleted
+                }
+                ... on ActivityLogUser {
+                    avatarUrl
+                    firstName
+                    id
+                    isDeleted
+                    lastName
+                }
+            }
+            groupCount
+            groupItems{
+                action
+                createdAt
+                entity{
+                    __typename
+                    ... on ActivityLogAttachment {
+                        id
+                        isDeleted
+                    }
+                    ... on ActivityLogCollection {
+                        id
+                        name
+                    }
+                    ... on ActivityLogFolder {
+                        id
+                        isDeleted
+                        name
+                    }
+                    ... on ActivityLogOrganization {
+                        id
+                        isDeleted
+                        name
+                    }
+                    ... on ActivityLogTeam {
+                        id
+                        isDeleted
+                        name
+                    }
+                    ... on ActivityLogTeamMember {
+                        id
+                        isDeleted
+                    }
+                    ... on ActivityLogUser {
+                        avatarUrl
+                        firstName
+                        id
+                        isDeleted
+                        lastName
+                    }
+                }
+                groupCount
+                id
+                ip
+                userAgent
+            }
+            id
+            ip
+            userAgent
+        }
+        pageInfo{
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+        }
+    }
+}

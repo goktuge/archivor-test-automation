@@ -1,0 +1,15 @@
+query oneSearchList($organizationId: ID!, $term: String!){
+    oneSearchList(organizationId: $organizationId, term: $term){
+        hits{
+            fileType
+            id
+            name
+            nameHighlighted
+            thumbnailUrl
+        }
+        suggestions{
+            highlighted
+            text
+        }
+    }
+}

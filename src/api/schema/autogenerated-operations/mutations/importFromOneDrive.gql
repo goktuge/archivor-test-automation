@@ -1,0 +1,6 @@
+mutation importFromOneDrive($input: OneDriveImportInput!){
+    importFromOneDrive(input: $input){
+        message
+        success
+    }
+}

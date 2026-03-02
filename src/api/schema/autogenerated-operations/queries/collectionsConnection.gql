@@ -1,0 +1,25 @@
+query collectionsConnection($organizationId: ID!, $attachmentIds: [ID!], $after: String, $before: String, $first: Int, $last: Int){
+    collectionsConnection(organizationId: $organizationId, attachmentIds: $attachmentIds, after: $after, before: $before, first: $first, last: $last){
+        edges{
+            cursor
+            node{
+                createdAt
+                id
+                name
+                updatedAt
+            }
+        }
+        nodes{
+            createdAt
+            id
+            name
+            updatedAt
+        }
+        pageInfo{
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+        }
+    }
+}

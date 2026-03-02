@@ -1,0 +1,10 @@
+mutation invitationAccept($input: InvitationAcceptInput!){
+    invitationAccept(input: $input){
+        id
+        organization{
+            id
+            name
+            slug
+        }
+    }
+}

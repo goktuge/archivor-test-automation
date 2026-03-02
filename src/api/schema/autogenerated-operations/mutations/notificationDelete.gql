@@ -1,0 +1,6 @@
+mutation notificationDelete($input: NotificationDeleteInput!){
+    notificationDelete(input: $input){
+        message
+        success
+    }
+}

@@ -1,0 +1,33 @@
+query teamMembersConnection($organizationId: ID!, $teamId: ID!, $after: String, $before: String, $first: Int, $last: Int){
+    teamMembersConnection(organizationId: $organizationId, teamId: $teamId, after: $after, before: $before, first: $first, last: $last){
+        edges{
+            cursor
+            node{
+                createdAt
+                id
+                updatedAt
+                user{
+                    avatarUrl
+                    firstName
+                    lastName
+                }
+            }
+        }
+        nodes{
+            createdAt
+            id
+            updatedAt
+            user{
+                avatarUrl
+                firstName
+                lastName
+            }
+        }
+        pageInfo{
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+        }
+    }
+}

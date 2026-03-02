@@ -1,15 +1,17 @@
 import { test as base } from './metrics.fixture';
-import { LoginPage } from '../pages/auth/LoginPage';
-import { DashboardPage } from '../pages/DashboardPage';
-import { AssetsPage } from '../pages/AssetsPage';
-import { OrganizationSettingsPage } from '../pages/organization-settings/OrganizationSettingsPage';
-import { OverviewTabPage } from '../pages/organization-settings/OverviewTabPage';
-import { RolesTabPage } from '../pages/organization-settings/RolesTabPage';
-import { TeamsTabPage } from '../pages/organization-settings/TeamsTabPage';
-import { MembersTabPage } from '../pages/organization-settings/MembersTabPage';
-import { ShareableLinksTabPage } from '../pages/organization-settings/ShareableLinksTabPage';
-import { DownloadLinksTabPage } from '../pages/organization-settings/DownloadLinksTabPage';
-import { TagsTabPage } from '../pages/organization-settings/TagsTabPage';
+import {
+  LoginPage,
+  DashboardPage,
+  AssetsPage,
+  OrganizationSettingsPage,
+  OverviewTabPage,
+  RolesTabPage,
+  TeamsTabPage,
+  MembersTabPage,
+  ShareableLinksTabPage,
+  DownloadLinksTabPage,
+  TagsTabPage,
+} from '../src/ui';
 
 export const test = base.extend<{
   loginPage: LoginPage;

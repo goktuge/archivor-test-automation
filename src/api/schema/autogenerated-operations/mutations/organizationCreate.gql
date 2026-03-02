@@ -1,0 +1,10 @@
+mutation organizationCreate($input: OrganizationCreateInput!){
+    organizationCreate(input: $input){
+        createdAt
+        dataSize
+        id
+        name
+        slug
+        updatedAt
+    }
+}

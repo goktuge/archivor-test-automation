@@ -1,0 +1,8 @@
+query organizationStats($organizationId: ID!){
+    organizationStats(organizationId: $organizationId){
+        bytes
+        date
+        sizeInHuman
+        statSource
+    }
+}

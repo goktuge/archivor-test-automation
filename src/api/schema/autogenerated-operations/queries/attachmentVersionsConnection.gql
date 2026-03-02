@@ -1,0 +1,37 @@
+query attachmentVersionsConnection($organizationId: ID!, $attachmentId: ID!, $after: String, $before: String, $first: Int, $last: Int){
+    attachmentVersionsConnection(organizationId: $organizationId, attachmentId: $attachmentId, after: $after, before: $before, first: $first, last: $last){
+        edges{
+            cursor
+            node{
+                attachmentId
+                createdAt
+                createdBy{
+                    avatarUrl
+                    firstName
+                    lastName
+                }
+                isLive
+                name
+                version
+            }
+        }
+        nodes{
+            attachmentId
+            createdAt
+            createdBy{
+                avatarUrl
+                firstName
+                lastName
+            }
+            isLive
+            name
+            version
+        }
+        pageInfo{
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+        }
+    }
+}

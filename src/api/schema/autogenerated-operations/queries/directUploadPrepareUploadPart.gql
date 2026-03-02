@@ -1,0 +1,5 @@
+query directUploadPrepareUploadPart($organizationId: ID!, $s3UploadId: String!, $key: String!, $partNumber: Int!){
+    directUploadPrepareUploadPart(organizationId: $organizationId, s3UploadId: $s3UploadId, key: $key, partNumber: $partNumber){
+        url
+    }
+}

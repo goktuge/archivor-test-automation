@@ -1,0 +1,23 @@
+query tagsConnection($organizationId: ID!, $term: String, $after: String, $before: String, $first: Int, $last: Int){
+    tagsConnection(organizationId: $organizationId, term: $term, after: $after, before: $before, first: $first, last: $last){
+        edges{
+            cursor
+            node{
+                createdAt
+                id
+                name
+            }
+        }
+        nodes{
+            createdAt
+            id
+            name
+        }
+        pageInfo{
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+        }
+    }
+}

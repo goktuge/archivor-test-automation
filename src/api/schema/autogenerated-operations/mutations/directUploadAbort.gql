@@ -1,0 +1,6 @@
+mutation directUploadAbort($input: DirectUploadAbortInput!){
+    directUploadAbort(input: $input){
+        message
+        success
+    }
+}

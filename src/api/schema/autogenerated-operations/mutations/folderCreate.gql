@@ -1,0 +1,22 @@
+mutation folderCreate($input: FolderCreateInput!){
+    folderCreate(input: $input){
+        error{
+            code
+            intersectedFiles
+            message
+        }
+        folder{
+            createdAt
+            createdBy{
+                avatarUrl
+                firstName
+                lastName
+            }
+            hasChildren
+            id
+            name
+            parentId
+            updatedAt
+        }
+    }
+}

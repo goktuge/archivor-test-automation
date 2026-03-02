@@ -4,6 +4,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
+  testMatch: /^(ui|api)\/.*\.(spec|setup)\.ts$/,
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
@@ -33,12 +34,12 @@ export default defineConfig({
   projects: [
     {
       name: 'setup',
-      testMatch: /.*\.setup\.ts/,
+      testMatch: /\.setup\.ts$/,
       retries: 0,
     },
     {
       name: 'chromium-unauth',
-      testMatch: /login\.spec\.ts|file-upload\.spec\.ts/,
+      testMatch: /login\.spec\.ts|file-upload\.spec\.ts|user-factory\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
         storageState: { cookies: [], origins: [] },
@@ -47,17 +48,30 @@ export default defineConfig({
     {
       name: 'chromium',
       testMatch: /(?<!login)(?<!file-upload)\.spec\.ts$/,
+      testIgnore: /user-factory\.spec\.ts/,
       use: { ...devices['Desktop Chrome'] },
     },
     {
       name: 'firefox',
       testMatch: /(?<!login)(?<!file-upload)\.spec\.ts$/,
+      testIgnore: /user-factory\.spec\.ts/,
       use: { ...devices['Desktop Firefox'] },
     },
     {
       name: 'webkit',
       testMatch: /(?<!login)(?<!file-upload)\.spec\.ts$/,
+      testIgnore: /user-factory\.spec\.ts/,
       use: { ...devices['Desktop Safari'] },
+    },
+    {
+      name: 'api',
+      testMatch: /api\.spec\.ts/,
+      use: {
+        baseURL: process.env.ARCHIVOR_API_URL || 'https://api.staging.archivor.io',
+        extraHTTPHeaders: {
+          Authorization: process.env.ARCHIVOR_TOKEN || '',
+        },
+      },
     },
   ],
 });

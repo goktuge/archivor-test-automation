@@ -1,0 +1,39 @@
+query foldersConnection($organizationId: ID!, $parentId: ID, $after: String, $before: String, $first: Int, $last: Int){
+    foldersConnection(organizationId: $organizationId, parentId: $parentId, after: $after, before: $before, first: $first, last: $last){
+        edges{
+            cursor
+            node{
+                createdAt
+                createdBy{
+                    avatarUrl
+                    firstName
+                    lastName
+                }
+                hasChildren
+                id
+                name
+                parentId
+                updatedAt
+            }
+        }
+        nodes{
+            createdAt
+            createdBy{
+                avatarUrl
+                firstName
+                lastName
+            }
+            hasChildren
+            id
+            name
+            parentId
+            updatedAt
+        }
+        pageInfo{
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+        }
+    }
+}

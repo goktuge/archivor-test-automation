@@ -1,0 +1,7 @@
+query directUploadListParts($organizationId: ID!, $s3UploadId: String!, $key: String!){
+    directUploadListParts(organizationId: $organizationId, s3UploadId: $s3UploadId, key: $key){
+        etag
+        partNumber
+        size
+    }
+}

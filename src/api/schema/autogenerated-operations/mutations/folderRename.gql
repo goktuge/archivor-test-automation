@@ -1,0 +1,54 @@
+mutation folderRename($after: String, $before: String, $first: Int, $last: Int, $input: FolderRenameInput!){
+    folderRename(input: $input){
+        activityLogs(after: $after, before: $before, first: $first, last: $last){
+            edges{
+                cursor
+                node{
+                    action
+                    createdAt
+                    id
+                    ip
+                    user{
+                        avatarUrl
+                        firstName
+                        id
+                        isDeleted
+                        lastName
+                    }
+                    userAgent
+                }
+            }
+            nodes{
+                action
+                createdAt
+                id
+                ip
+                user{
+                    avatarUrl
+                    firstName
+                    id
+                    isDeleted
+                    lastName
+                }
+                userAgent
+            }
+            pageInfo{
+                endCursor
+                hasNextPage
+                hasPreviousPage
+                startCursor
+            }
+        }
+        createdAt
+        createdBy{
+            avatarUrl
+            firstName
+            lastName
+        }
+        hasChildren
+        id
+        name
+        parentId
+        updatedAt
+    }
+}

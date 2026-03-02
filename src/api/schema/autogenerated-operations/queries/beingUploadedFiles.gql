@@ -1,0 +1,10 @@
+query beingUploadedFiles($organizationId: ID!, $uploadJobIds: [ID!]!){
+    beingUploadedFiles(organizationId: $organizationId, uploadJobIds: $uploadJobIds){
+        attachmentId
+        bytes
+        createdAt
+        id
+        name
+        state
+    }
+}

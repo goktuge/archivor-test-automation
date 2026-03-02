@@ -1,0 +1,16 @@
+mutation roleUpdate($input: RoleUpdateInput!){
+    roleUpdate(input: $input){
+        createdAt
+        description
+        id
+        kind
+        name
+        permissions{
+            createdAt
+            group
+            id
+            permission
+        }
+        updatedAt
+    }
+}

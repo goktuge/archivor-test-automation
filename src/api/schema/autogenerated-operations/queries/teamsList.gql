@@ -1,0 +1,19 @@
+query teamsList($organizationId: ID!){
+    teamsList(organizationId: $organizationId){
+        createdAt
+        description
+        id
+        name
+        teamMembers{
+            createdAt
+            id
+            updatedAt
+            user{
+                avatarUrl
+                firstName
+                lastName
+            }
+        }
+        updatedAt
+    }
+}

@@ -1,0 +1,16 @@
+mutation roleCreate($input: RoleCreateInput!){
+    roleCreate(input: $input){
+        createdAt
+        description
+        id
+        kind
+        name
+        permissions{
+            createdAt
+            group
+            id
+            permission
+        }
+        updatedAt
+    }
+}

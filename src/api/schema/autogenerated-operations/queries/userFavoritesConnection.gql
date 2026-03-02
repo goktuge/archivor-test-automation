@@ -1,0 +1,53 @@
+query userFavoritesConnection($organizationId: ID!, $after: String, $before: String, $first: Int, $last: Int){
+    userFavoritesConnection(organizationId: $organizationId, after: $after, before: $before, first: $first, last: $last){
+        edges{
+            cursor
+            node{
+                createdAt
+                favorable{
+                    __typename
+                    ... on UserFavoriteAttachment {
+                        id
+                        name
+                        thumbnailUrl
+                    }
+                    ... on UserFavoriteCollection {
+                        id
+                        name
+                    }
+                    ... on UserFavoriteFolder {
+                        id
+                        name
+                    }
+                }
+                id
+            }
+        }
+        nodes{
+            createdAt
+            favorable{
+                __typename
+                ... on UserFavoriteAttachment {
+                    id
+                    name
+                    thumbnailUrl
+                }
+                ... on UserFavoriteCollection {
+                    id
+                    name
+                }
+                ... on UserFavoriteFolder {
+                    id
+                    name
+                }
+            }
+            id
+        }
+        pageInfo{
+            endCursor
+            hasNextPage
+            hasPreviousPage
+            startCursor
+        }
+    }
+}

@@ -1,0 +1,2136 @@
+enum ActionEnum {
+  SIGN_UP
+  SIGN_IN
+  SIGN_OUT
+  EMPTY_TRASH
+  FOLDER_CREATE
+  FOLDER_RENAME
+  FOLDER_CREATE_ON_UPLOAD
+  FOLDER_MOVE
+  FOLDER_MOVE_AND_MERGE
+  FOLDER_MOVE_TO_TRASH
+  FILE_UPLOAD
+  FILE_DELETE
+  FILE_MOVE_TO_TRASH
+  INVITATION_ACCEPT
+  ORGANIZATION_CREATE
+  ORGANIZATION_UPDATE
+  ORGANIZATION_MEMBER_CREATE
+  ORGANIZATION_MEMBER_DELETE
+  ORGANIZATION_MEMBER_UPDATE
+  TEAM_CREATE
+  TEAM_UPDATE
+  TEAM_DELETE
+  TEAM_MEMBER_CREATE
+  TEAM_MEMBER_UPDATE
+  TEAM_MEMBER_DELETE
+  COLLECTION_CREATE
+  COLLECTION_UPDATE
+  COLLECTION_DELETE
+  COLLECTION_FILE_ADD
+  COLLECTION_FILE_REMOVE
+  SHAREABLE_LINK_CREATE
+  SHAREABLE_LINK_DELETE
+}
+
+type ActivityLog implements ActivityLogInterface {
+  action: ActionEnum!
+  createdAt: BigInt!
+  entity: EntityUnion
+  groupCount: Int!
+  groupItems: [ActivityLog!]!
+  id: ID!
+  ip: String
+  userAgent: String
+}
+
+type ActivityLogAttachment {
+  id: ID!
+  isDeleted: Boolean!
+}
+
+type ActivityLogCollection {
+  id: ID!
+  name: String!
+}
+
+"""The connection type for ActivityLog."""
+type ActivityLogConnection {
+  """A list of edges."""
+  edges: [ActivityLogEdge]
+
+  """A list of nodes."""
+  nodes: [ActivityLog]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+"""An edge in a connection."""
+type ActivityLogEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: ActivityLog
+}
+
+type ActivityLogFolder {
+  id: ID!
+  isDeleted: Boolean!
+  name: String!
+}
+
+interface ActivityLogInterface {
+  action: ActionEnum!
+  createdAt: BigInt!
+  id: ID!
+  ip: String
+  userAgent: String
+}
+
+type ActivityLogOrganization {
+  id: ID!
+  isDeleted: Boolean!
+  name: String!
+}
+
+type ActivityLogTeam {
+  id: ID!
+  isDeleted: Boolean!
+  name: String!
+}
+
+type ActivityLogTeamMember {
+  id: ID!
+  isDeleted: Boolean!
+}
+
+type ActivityLogUser {
+  avatarUrl: String
+  firstName: String
+  id: ID!
+  isDeleted: Boolean!
+  lastName: String
+}
+
+type Attachment implements AttachmentInterface {
+  byteSize: BigInt
+  collectionsCount: Int
+  contentType: String
+  createdAt: BigInt!
+  createdBy: AttachmentUser!
+  downloadUrl: String
+  favoriteId: ID
+  fileType: FileTypeEnum!
+  hasChildren: Boolean!
+  id: ID!
+  isFavored: Boolean!
+  meta: AttachmentMeta
+  name: String!
+
+  """The original path of the file in case of being trashed."""
+  originalPath: String
+  previewUrl: String
+  thumbnailUrl: String
+  updatedAt: BigInt!
+  versionsCount: Int
+}
+
+"""The connection type for Attachment."""
+type AttachmentConnection {
+  """A list of edges."""
+  edges: [AttachmentEdge]
+
+  """A list of nodes."""
+  nodes: [Attachment]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+"""An edge in a connection."""
+type AttachmentEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Attachment
+}
+
+interface AttachmentInterface {
+  byteSize: BigInt
+  collectionsCount: Int
+  contentType: String
+  createdBy: AttachmentUser!
+  downloadUrl: String
+  favoriteId: ID
+  id: ID!
+  isFavored: Boolean!
+  meta: AttachmentMeta
+  name: String!
+  previewUrl: String
+  thumbnailUrl: String
+}
+
+type AttachmentMeta {
+  pageCount: Int
+  slideCount: Int
+}
+
+type AttachmentMetadata {
+  id: ID!
+  namespace: String!
+  tagName: String!
+  value: String!
+  valueType: MetadataValueTypeEnum!
+}
+
+type AttachmentMonthlyStats {
+  date: BigInt!
+  downloadCount: BigInt!
+}
+
+type AttachmentShow implements AttachmentInterface {
+  byteSize: BigInt
+  collectionsCount: Int
+  contentType: String
+  createdAt: BigInt!
+  createdBy: AttachmentUser!
+  dimensions: [Int!]
+  downloadUrl: String
+  favoriteId: ID
+  id: ID!
+  isFavored: Boolean!
+  meta: AttachmentMeta
+  metadata: [AttachmentMetadata!]
+  name: String!
+  previewUrl: String
+  stats: AttachmentStats!
+  tags: [AttachmentTag!]
+  thumbnailUrl: String
+  updatedAt: BigInt!
+  versions: [AttachmentVersion!]!
+}
+
+enum AttachmentSortByEnum {
+  NAME
+  CREATED_AT
+  UPDATED_AT
+  BYTE_SIZE
+  FILE_TYPE
+}
+
+type AttachmentStats {
+  downloadCount: BigInt!
+  monthlyStats: [AttachmentMonthlyStats!]!
+}
+
+type AttachmentTag {
+  aiConfidence: Float
+  id: ID!
+  instances: [AttachmentTagInstance!]
+  isAi: Boolean!
+  name: String!
+}
+
+input AttachmentTagCreate {
+  organizationId: ID!
+  attachmentId: ID!
+  name: String!
+}
+
+input AttachmentTagDelete {
+  organizationId: ID!
+  attachmentId: ID!
+  id: ID!
+}
+
+type AttachmentTagInstance {
+  confidence: Float!
+  height: Float!
+  left: Float!
+  top: Float!
+  width: Float!
+}
+
+type AttachmentUser {
+  avatarUrl: String
+  firstName: String
+  lastName: String
+}
+
+type AttachmentVersion {
+  attachmentId: ID!
+  createdAt: BigInt!
+  createdBy: AttachmentUser!
+  isLive: Boolean!
+  name: String!
+  version: Int!
+}
+
+input AttachmentVersionCheckout {
+  organizationId: ID!
+  attachmentId: ID!
+}
+
+"""The connection type for AttachmentVersion."""
+type AttachmentVersionConnection {
+  """A list of edges."""
+  edges: [AttachmentVersionEdge]
+
+  """A list of nodes."""
+  nodes: [AttachmentVersion]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+"""An edge in a connection."""
+type AttachmentVersionEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: AttachmentVersion
+}
+
+enum AutomationActionKindEnum {
+  INTEGRATION
+  WEBHOOK
+}
+
+enum AutomationActionStatusEnum {
+  ACTIVE
+  PAUSED
+}
+
+input AutomationEventTriggerInput {
+  source: AutomationTriggerSourceEnum!
+  eventType: AutomationTriggerEventTypeEnum!
+  condition: String
+}
+
+type AutomationRule {
+  actions: [AutomationRuleAction!]!
+  createdAt: BigInt!
+  description: String
+  eventTrigger: AutomationRuleEventTrigger
+  id: ID!
+  name: String
+  status: AutomationRuleStatusEnum!
+  updatedAt: BigInt!
+}
+
+type AutomationRuleAction {
+  actionType: String!
+  condition: String
+  id: ID!
+  kind: AutomationActionKindEnum!
+  kindId: ID
+  parameters: AutomationRuleActionParameterUnion
+  status: AutomationActionStatusEnum!
+}
+
+union AutomationRuleActionParameterUnion = AutomationRuleActionSlackOauth2Parameter | AutomationRuleActionWebhookParameter
+
+type AutomationRuleActionSlackOauth2Parameter {
+  channelId: String!
+  channelName: String!
+  messageTemplate: String
+}
+
+type AutomationRuleActionWebhookParameter {
+  url: String!
+}
+
+input AutomationRuleCreateInput {
+  organizationId: ID!
+  name: String
+  description: String
+  status: AutomationRuleStatusEnum!
+  scheduleTrigger: AutomationScheduleTriggerInput
+  eventTrigger: AutomationEventTriggerInput
+  actions: [AutomationTriggerActionInput!]!
+}
+
+input AutomationRuleDeleteInput {
+  id: ID!
+  organizationId: ID!
+}
+
+type AutomationRuleEventTrigger {
+  condition: String
+  eventType: AutomationTriggerEventTypeEnum!
+  source: AutomationTriggerSourceEnum!
+}
+
+enum AutomationRuleStatusEnum {
+  DRAFT
+  ACTIVE
+  DISABLED
+}
+
+input AutomationRuleUpdateInput {
+  organizationId: ID!
+  name: String
+  description: String
+  status: AutomationRuleStatusEnum!
+  scheduleTrigger: AutomationScheduleTriggerInput
+  eventTrigger: AutomationEventTriggerInput
+  actions: [AutomationTriggerActionInput!]!
+  id: ID!
+}
+
+input AutomationScheduleTriggerInput {
+  scheduleType: String!
+}
+
+input AutomationTriggerActionInput {
+  id: ID
+  kind: AutomationActionKindEnum!
+  kindId: ID
+  status: AutomationActionStatusEnum!
+  actionType: String!
+  condition: String
+  parameters: AutomationTriggerActionParameterInput!
+}
+
+input AutomationTriggerActionParameterInput {
+  slackOauth2: SlackOauth2ParameterInput
+  webhook: WebhookParameterInput
+}
+
+enum AutomationTriggerEventTypeEnum {
+  FILE_CREATED
+}
+
+enum AutomationTriggerSourceEnum {
+  FILE
+}
+
+"""
+Represents non-fractional signed whole numeric values. Since the value may exceed the size of a 32-bit integer, it's encoded as a string.
+"""
+scalar BigInt
+
+type Collection {
+  createdAt: BigInt!
+  id: ID!
+  name: String!
+  updatedAt: BigInt!
+}
+
+input CollectionAddFilesInput {
+  organizationId: ID!
+  id: ID!
+  attachmentIds: [ID!]!
+}
+
+type CollectionAttachment {
+  attachmentId: ID!
+  createdAt: BigInt!
+  name: String!
+}
+
+"""The connection type for CollectionAttachment."""
+type CollectionAttachmentConnection {
+  """A list of edges."""
+  edges: [CollectionAttachmentEdge]
+
+  """A list of nodes."""
+  nodes: [CollectionAttachment]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+"""An edge in a connection."""
+type CollectionAttachmentEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: CollectionAttachment
+}
+
+"""The connection type for Collection."""
+type CollectionConnection {
+  """A list of edges."""
+  edges: [CollectionEdge]
+
+  """A list of nodes."""
+  nodes: [Collection]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+input CollectionCreateInput {
+  organizationId: ID!
+  name: String!
+}
+
+input CollectionDeleteInput {
+  id: ID!
+  organizationId: ID!
+}
+
+"""An edge in a connection."""
+type CollectionEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Collection
+}
+
+input CollectionRemoveFilesInput {
+  organizationId: ID!
+  id: ID!
+  attachmentIds: [ID!]!
+}
+
+input CollectionUpdateInput {
+  id: ID!
+  organizationId: ID!
+  name: String!
+}
+
+type Comment {
+  body: String!
+  children: [Comment!]!
+  createdAt: BigInt!
+  id: ID!
+  isEdited: Boolean!
+  updatedAt: BigInt!
+  user: CommentUser!
+}
+
+enum CommentCommentableTypeEnum {
+  ATTACHMENT
+}
+
+"""The connection type for Comment."""
+type CommentConnection {
+  """A list of edges."""
+  edges: [CommentEdge]
+
+  """A list of nodes."""
+  nodes: [Comment]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+input CommentCreateInput {
+  organizationId: ID!
+  body: String!
+  commentableId: ID!
+  commentableType: CommentCommentableTypeEnum!
+  parentId: ID
+}
+
+input CommentDeleteInput {
+  id: ID!
+  organizationId: ID!
+}
+
+"""An edge in a connection."""
+type CommentEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Comment
+}
+
+input CommentUpdateInput {
+  id: ID!
+  organizationId: ID!
+  body: String!
+}
+
+type CommentUser {
+  avatarUrl: String
+  firstName: String
+  id: ID!
+  lastName: String
+}
+
+enum ConflictBehaviorEnum {
+  FAIL
+  KEEP_BOTH
+}
+
+enum ConflictCodeEnum {
+  FOLDER_EXISTS
+  FILE_EXISTS
+  PROPAGATION_ERROR
+}
+
+type Credential {
+  archivedAt: BigInt
+  createdAt: BigInt!
+  id: ID!
+  name: String!
+  provider: CredentialAuthLinkProviderEnum!
+  updatedAt: BigInt!
+}
+
+input CredentialArchiveToggleInput {
+  id: ID!
+  organizationId: ID!
+}
+
+type CredentialAuthLink {
+  link: String!
+}
+
+enum CredentialAuthLinkProviderEnum {
+  SLACK_OAUTH2
+}
+
+input CredentialDeleteInput {
+  id: ID!
+  organizationId: ID!
+}
+
+input DirectUploadAbortInput {
+  organizationId: ID!
+  key: String!
+  s3UploadId: String!
+  uploadJobId: String!
+}
+
+type DirectUploadComplete {
+  location: String!
+}
+
+input DirectUploadCompleteInput {
+  organizationId: ID!
+  s3UploadId: String!
+  uploadJobId: String!
+  key: String!
+  parts: [DirectUploadCompletedPartsInput!]!
+}
+
+input DirectUploadCompletedPartsInput {
+  partNumber: Int!
+  etag: String!
+}
+
+input DirectUploadInitiateInput {
+  organizationId: ID!
+  folderId: ID
+  attachmentIdToVersion: ID
+  filename: String!
+  contentType: String!
+  checksum: String!
+  byteSize: BigInt!
+  relativePath: String
+  uploadJobId: ID!
+  isMultipart: Boolean!
+}
+
+union DirectUploadInitiateTypeUnion = DirectUploadMultipartUpload | DirectUploadSingleUpload
+
+type DirectUploadListParts {
+  etag: String!
+  partNumber: Int!
+  size: BigInt!
+}
+
+type DirectUploadMultipartUpload {
+  attachmentId: ID!
+  key: String!
+  s3UploadId: String!
+}
+
+type DirectUploadPrepareUploadPart {
+  url: String!
+}
+
+type DirectUploadS3Initiate {
+  uploadDetails: DirectUploadInitiateTypeUnion!
+}
+
+type DirectUploadSingleUpload {
+  attachmentId: ID!
+  fields: JSON
+  headers: String!
+  s3Method: String!
+  url: String!
+}
+
+type DownloadLink {
+  createdAt: BigInt!
+  createdBy: AttachmentUser!
+  fileName: String
+  id: ID!
+  items: [DownloadLinkItem!]!
+  link: String!
+  token: String!
+  updatedAt: BigInt!
+}
+
+type DownloadLinkAttachment {
+  filename: String!
+  id: ID!
+}
+
+"""The connection type for DownloadLink."""
+type DownloadLinkConnection {
+  """A list of edges."""
+  edges: [DownloadLinkEdge]
+
+  """A list of nodes."""
+  nodes: [DownloadLink]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+input DownloadLinkCreateInput {
+  organizationId: ID!
+  fileName: String!
+  password: String
+  masterAttachmentId: ID
+  expirationDate: BigInt!
+  items: [DownloadLinkItemInput!]!
+}
+
+input DownloadLinkDeleteInput {
+  organizationId: ID!
+  id: ID!
+}
+
+"""An edge in a connection."""
+type DownloadLinkEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: DownloadLink
+}
+
+type DownloadLinkFolder {
+  id: ID!
+  name: String!
+}
+
+type DownloadLinkItem {
+  createdAt: BigInt!
+  entity: DownloadLinkItemTypeUnion!
+  id: ID!
+}
+
+input DownloadLinkItemInput {
+  downloadableId: ID!
+  downloadableType: DownloadableEnum!
+}
+
+union DownloadLinkItemTypeUnion = DownloadLinkAttachment | DownloadLinkFolder
+
+input DownloadLinkRevokeInput {
+  organizationId: ID!
+  id: ID!
+}
+
+enum DownloadableEnum {
+  FOLDER
+  ATTACHMENT
+}
+
+input DriveImportInput {
+  organizationId: ID!
+  parentId: ID
+  code: String!
+  redirectUri: String!
+}
+
+type EntityActivityLog implements ActivityLogInterface {
+  action: ActionEnum!
+  createdAt: BigInt!
+  id: ID!
+  ip: String
+  user: ActivityLogUser
+  userAgent: String
+}
+
+"""The connection type for EntityActivityLog."""
+type EntityActivityLogConnection {
+  """A list of edges."""
+  edges: [EntityActivityLogEdge]
+
+  """A list of nodes."""
+  nodes: [EntityActivityLog]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+"""An edge in a connection."""
+type EntityActivityLogEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: EntityActivityLog
+}
+
+enum EntityEnum {
+  CREDENTIAL
+  COMMENT
+  ATTACHMENT
+  FOLDER
+  TEAM
+  ORGANIZATION
+  ORGANIZATION_MEMBER
+  COLLECTION
+  SHAREABLE_LINK
+  DOWNLOAD_LINK
+  AUTOMATION_RULE
+}
+
+union EntityUnion = ActivityLogAttachment | ActivityLogCollection | ActivityLogFolder | ActivityLogOrganization | ActivityLogTeam | ActivityLogTeamMember | ActivityLogUser
+
+enum FavorableTypeEnum {
+  COLLECTION
+  ATTACHMENT
+  FOLDER
+}
+
+union FavorableUnion = UserFavoriteAttachment | UserFavoriteCollection | UserFavoriteFolder
+
+enum FileConflictBehaviorEnum {
+  FAIL
+  PROCEED
+}
+
+input FileEmptyTrashInput {
+  organizationId: ID!
+}
+
+enum FileFailureReasonEnum {
+  AUTHORIZATION
+  RELATED_OBJECT
+}
+
+enum FileFileTypeEnum {
+  FOLDER
+  ATTACHMENT
+}
+
+input FileInput {
+  id: ID!
+  type: FileFileTypeEnum!
+}
+
+type FileMoveToTrash {
+  error: String
+  failureReason: FileFailureReasonEnum
+  id: ID!
+  relatedObjectCounts: [FileRelatedObjectCounts!]
+  success: Boolean!
+}
+
+input FileMoveToTrashInput {
+  organizationId: ID!
+  conflictBehavior: FileConflictBehaviorEnum!
+  files: [FileInput!]!
+}
+
+type FileRelatedObjectCounts {
+  count: Int!
+  objectType: RelatedObjectEnum!
+}
+
+type FileRestoreFromTrash {
+  error: String
+  failureReason: FileFailureReasonEnum
+  id: ID!
+  success: Boolean!
+}
+
+input FileRestoreFromTrashInput {
+  organizationId: ID!
+  files: [FileInput!]!
+  parentId: ID
+  useOriginalLocation: Boolean
+}
+
+enum FileTypeEnum {
+  FILE
+  DIRECTORY
+}
+
+type Folder implements FolderInterface {
+  createdAt: BigInt!
+  createdBy: AttachmentUser!
+  hasChildren: Boolean!
+  id: ID!
+  name: String!
+  parentId: ID
+  updatedAt: BigInt!
+}
+
+"""The connection type for Folder."""
+type FolderConnection {
+  """A list of edges."""
+  edges: [FolderEdge]
+
+  """A list of nodes."""
+  nodes: [Folder]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+input FolderCreateInput {
+  name: String!
+  organizationId: ID!
+  parentId: ID
+  conflictBehavior: ConflictBehaviorEnum!
+}
+
+type FolderCreateOrMove {
+  error: FolderCreateOrMoveError
+  folder: Folder
+}
+
+type FolderCreateOrMoveError {
+  code: ConflictCodeEnum!
+  intersectedFiles: [String!]!
+  message: String!
+}
+
+"""An edge in a connection."""
+type FolderEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Folder
+}
+
+interface FolderInterface {
+  createdAt: BigInt!
+  createdBy: AttachmentUser!
+  hasChildren: Boolean!
+  id: ID!
+  name: String!
+  parentId: ID
+  updatedAt: BigInt!
+}
+
+input FolderMoveInput {
+  id: ID!
+  organizationId: ID!
+  parentId: ID
+  conflictBehavior: MoveConflictBehaviorEnum!
+}
+
+type FolderRawList {
+  folders: JSON!
+  size: Int!
+}
+
+input FolderRenameInput {
+  id: ID!
+  organizationId: ID!
+  name: String!
+}
+
+type FolderShow implements FolderInterface {
+  activityLogs(
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): EntityActivityLogConnection
+  createdAt: BigInt!
+  createdBy: AttachmentUser!
+  hasChildren: Boolean!
+  id: ID!
+  name: String!
+  parentId: ID
+  updatedAt: BigInt!
+}
+
+type IntegrationSlackChannel {
+  id: String!
+  name: String!
+}
+
+type Invitation {
+  createdAt: BigInt!
+  email: String!
+  id: ID!
+  message: String
+}
+
+type InvitationAccept {
+  id: ID!
+  organization: InvitationAcceptOrganization!
+}
+
+input InvitationAcceptInput {
+  token: String!
+}
+
+type InvitationAcceptOrganization {
+  id: ID!
+  name: String!
+  slug: String!
+}
+
+"""The connection type for Invitation."""
+type InvitationConnection {
+  """A list of edges."""
+  edges: [InvitationEdge]
+
+  """A list of nodes."""
+  nodes: [Invitation]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+"""An edge in a connection."""
+type InvitationEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Invitation
+}
+
+"""Represents untyped JSON"""
+scalar JSON
+
+type Me {
+  avatarUrl: String
+  createdAt: BigInt!
+  email: String!
+  firstName: String
+  id: ID!
+  lastName: String
+  organizations: [Organization!]!
+  timezone: String!
+  updatedAt: BigInt!
+}
+
+input MeProfilePictureCropInput {
+  top: Int!
+  left: Int!
+  width: Int!
+  height: Int!
+}
+
+input MeUpdateInput {
+  avatar: Upload
+  cropDetails: MeProfilePictureCropInput
+  firstName: String!
+  lastName: String!
+  timezone: String!
+}
+
+enum MetadataValueTypeEnum {
+  STRING
+  INT
+  FLOAT
+  BOOLEAN
+  DATETIME
+  RATIONAL
+}
+
+enum MoveConflictBehaviorEnum {
+  FAIL
+  OVERWRITE_FILE
+  RENAME_FILE
+  KEEP_BOTH
+}
+
+type Mutation {
+  attachmentTagCreate(input: AttachmentTagCreate!): Response!
+  attachmentTagDelete(input: AttachmentTagDelete!): Response!
+  attachmentVersionCheckout(input: AttachmentVersionCheckout!): Response!
+  automationRuleCreate(input: AutomationRuleCreateInput!): AutomationRule!
+  automationRuleDelete(input: AutomationRuleDeleteInput!): Response!
+  automationRuleUpdate(input: AutomationRuleUpdateInput!): AutomationRule!
+  collectionAddFiles(input: CollectionAddFilesInput!): Response!
+  collectionCreate(input: CollectionCreateInput!): Collection!
+  collectionDelete(input: CollectionDeleteInput!): Response!
+  collectionRemoveFiles(input: CollectionRemoveFilesInput!): Response!
+  collectionUpdate(input: CollectionUpdateInput!): Collection!
+  commentCreate(input: CommentCreateInput!): Comment!
+  commentDelete(input: CommentDeleteInput!): Response!
+  commentUpdate(input: CommentUpdateInput!): Comment!
+  credentialArchiveToggle(input: CredentialArchiveToggleInput!): Credential!
+  credentialDelete(input: CredentialDeleteInput!): Response!
+  directUploadAbort(input: DirectUploadAbortInput!): Response!
+  directUploadComplete(input: DirectUploadCompleteInput!): DirectUploadComplete!
+  directUploadInitiate(input: DirectUploadInitiateInput!): DirectUploadS3Initiate!
+  downloadLinkCreate(input: DownloadLinkCreateInput!): DownloadLink!
+  downloadLinkDelete(input: DownloadLinkDeleteInput!): Response!
+  downloadLinkRevoke(input: DownloadLinkRevokeInput!): Response!
+  fileEmptyTrash(input: FileEmptyTrashInput!): Response!
+  fileMoveToTrash(input: FileMoveToTrashInput!): [FileMoveToTrash!]!
+  fileRestoreFromTrash(input: FileRestoreFromTrashInput!): [FileRestoreFromTrash!]!
+  folderCreate(input: FolderCreateInput!): FolderCreateOrMove!
+  folderMove(input: FolderMoveInput!): FolderCreateOrMove!
+  folderRename(input: FolderRenameInput!): FolderShow!
+  importFromDrive(input: DriveImportInput!): Response!
+  importFromOneDrive(input: OneDriveImportInput!): Response!
+  invitationAccept(input: InvitationAcceptInput!): InvitationAccept!
+  meUpdate(input: MeUpdateInput!): Me!
+  notificationDelete(input: NotificationDeleteInput!): Response!
+  notificationMarkAsRead(input: NotificationMarkAsReadInput!): Response!
+  organizationCreate(input: OrganizationCreateInput!): Organization!
+  organizationMemberCreate(input: OrganizationMemberCreateInput!): OrganizationMember!
+  organizationMemberDelete(input: OrganizationMemberDeleteInput!): Response!
+  organizationMemberUpdate(input: OrganizationMemberUpdateInput!): OrganizationMember!
+  organizationUpdate(input: OrganizationUpdateInput!): Organization!
+  roleCreate(input: RoleCreateInput!): Role!
+  roleDelete(input: RoleDeleteInput!): Response!
+  roleUpdate(input: RoleUpdateInput!): Role!
+  shareableLinkCreate(input: ShareableLinkCreateInput!): ShareableLink!
+  shareableLinkDelete(input: ShareableLinkDeleteInput!): Response!
+  teamCreate(input: TeamCreateInput!): TeamShow!
+  teamDelete(input: TeamDeleteInput!): Response!
+  teamMemberCreate(input: TeamMemberCreateInput!): Response!
+  teamMemberDelete(input: TeamMemberDeleteInput!): Response!
+  teamUpdate(input: TeamUpdateInput!): TeamShow!
+  uploadJobStart(input: UploadJobStartInput!): UploadJobStart!
+  uploadJobUpdate(input: UploadJobUpdateInput!): Response!
+  userFavoriteCreate(input: UserFavoriteCreateInput!): Response!
+  userFavoriteDelete(input: UserFavoriteDeleteInput!): Response!
+}
+
+type Notification {
+  actor: NotificationUser!
+  createdAt: BigInt!
+  eventType: String!
+  id: ID!
+  readAt: BigInt
+}
+
+"""The connection type for Notification."""
+type NotificationConnection {
+  """A list of edges."""
+  edges: [NotificationEdge]
+
+  """A list of nodes."""
+  nodes: [Notification]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+input NotificationDeleteInput {
+  organizationId: ID!
+
+  """To remove all notifications, pass an empty array."""
+  ids: [ID!]!
+}
+
+"""An edge in a connection."""
+type NotificationEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Notification
+}
+
+input NotificationMarkAsReadInput {
+  organizationId: ID!
+
+  """To mark all notifications as read, pass an empty array."""
+  ids: [ID!]!
+}
+
+type NotificationUser {
+  avatarUrl: String
+  firstName: String
+  id: ID!
+  lastName: String
+}
+
+type OneDriveConnect {
+  redirectUrl: ID!
+}
+
+input OneDriveImportInput {
+  organizationId: ID!
+  code: String!
+  state: String!
+  redirectUri: String!
+  parentId: ID
+}
+
+type OneSearch {
+  hits: [OneSearchHit!]!
+  suggestions: [OneSearchSuggestion!]!
+}
+
+type OneSearchAutocomplete {
+  hits: [OneSearchAutocompleteHit!]!
+}
+
+type OneSearchAutocompleteHit {
+  name: String!
+}
+
+type OneSearchHit {
+  fileType: SearchFileTypeEnum!
+  id: ID!
+  name: String!
+  nameHighlighted: [String!]
+  thumbnailUrl: String
+}
+
+type OneSearchSuggestion {
+  highlighted: String
+  text: String
+}
+
+type Organization implements OrganizationInterface {
+  createdAt: BigInt!
+  dataSize: BigInt!
+  id: ID!
+  name: String!
+  slug: String!
+  updatedAt: BigInt!
+}
+
+input OrganizationCreateInput {
+  name: String!
+  slug: String!
+  sector: SectorEnum
+}
+
+interface OrganizationInterface {
+  createdAt: BigInt!
+  dataSize: BigInt!
+  id: ID!
+  name: String!
+  slug: String!
+  updatedAt: BigInt!
+}
+
+type OrganizationMember {
+  id: ID!
+  invitationEmail: String!
+  invitedAt: BigInt!
+  invitedBy: OrganizationMemberUser!
+  joinedAt: BigInt
+  roles: [OrganizationMemberRole!]
+  state: OrganizationMemberStateEnum!
+  teams: [OrganizationMemberTeam!]
+  user: OrganizationMemberUser
+}
+
+input OrganizationMemberCreateInput {
+  organizationId: ID!
+  invitationEmail: String!
+  invitationMessage: String
+  teamIds: [ID!]
+  roleIds: [ID!]
+}
+
+input OrganizationMemberDeleteInput {
+  organizationId: ID!
+  id: ID!
+}
+
+type OrganizationMemberRole {
+  id: ID!
+  name: String!
+}
+
+enum OrganizationMemberStateEnum {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+type OrganizationMemberTeam {
+  id: ID!
+  name: String!
+}
+
+input OrganizationMemberUpdateInput {
+  id: ID!
+  organizationId: ID!
+  teamIds: [ID!]
+  roleIds: [ID!]
+}
+
+type OrganizationMemberUser {
+  avatarUrl: String
+  firstName: String
+  id: ID!
+  lastName: String
+}
+
+type OrganizationSector {
+  id: String!
+  name: String!
+}
+
+type OrganizationShow implements OrganizationInterface {
+  createdAt: BigInt!
+  dataSize: BigInt!
+  id: ID!
+  name: String!
+  slug: String!
+  updatedAt: BigInt!
+}
+
+type OrganizationStat {
+  bytes: BigInt!
+  date: String!
+  sizeInHuman: String!
+  statSource: StatSourceEnum
+}
+
+input OrganizationUpdateInput {
+  id: ID!
+  name: String!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+}
+
+type Permission {
+  entityId: ID!
+  entityType: EntityEnum!
+  permissions: [PermissionType!]!
+}
+
+input PermissionEntitiesInput {
+  entityId: ID!
+  entityType: EntityEnum!
+}
+
+enum PermissionEnum {
+  CREDENTIAL_VIEW
+  CREDENTIAL_UPDATE
+  CREDENTIAL_DELETE
+  COMMENT_UPDATE
+  COMMENT_DELETE
+  ATTACHMENT_MOVE_TO_TRASH
+  ATTACHMENT_RESTORE_FROM_TRASH
+  ATTACHMENT_VIEW
+  ATTACHMENT_SHARE
+  ATTACHMENT_COMMENT_CREATE
+  FOLDER_VIEW
+  FOLDER_MOVE_TO_TRASH
+  FOLDER_RESTORE_FROM_TRASH
+  FOLDER_UPDATE
+  FOLDER_SHARE
+  TEAM_UPDATE
+  TEAM_DELETE
+  TEAM_VIEW
+  TEAM_MEMBER_CREATE
+  TEAM_MEMBER_UPDATE
+  TEAM_MEMBER_DELETE
+  TEAM_MEMBER_LIST
+  ORG_ADMIN
+  ORG_MEMBER
+  ORG_UPDATE
+  ORG_VIEW
+  ORG_TEAM_CREATE
+  ORG_TEAM_LIST
+  ORG_FOLDER_LIST
+  ORG_FOLDER_CREATE
+  ORG_EMPTY_TRASH
+  ORG_TAG_LIST
+  ORG_ROLE_LIST
+  ORG_ROLE_CREATE
+  ORG_ROLE_UPDATE
+  ORG_ROLE_DELETE
+  ORG_MEMBER_CREATE
+  ORG_MEMBER_LIST
+  ORG_COLLECTION_CREATE
+  ORG_SHAREABLE_LINK_CREATE
+  ORG_DOWNLOAD_LINK_CREATE
+  ORG_ACTIVITY_LOG_LIST
+  ORG_CREDENTIAL_CREATE
+  ORG_AUTOMATION_RULE_CREATE
+  ORGANIZATION_MEMBER_UPDATE
+  ORGANIZATION_MEMBER_DELETE
+  ORGANIZATION_MEMBER_VIEW
+  COLLECTION_VIEW
+  COLLECTION_UPDATE
+  COLLECTION_DELETE
+  COLLECTION_ADD_FILE
+  COLLECTION_REMOVE_FILE
+  COLLECTION_SHARE
+  SHAREABLE_LINK_VIEW
+  SHAREABLE_LINK_DELETE
+  DOWNLOAD_LINK_VIEW
+  DOWNLOAD_LINK_DELETE
+  DOWNLOAD_LINK_UPDATE
+  AUTOMATION_RULE_VIEW
+  AUTOMATION_RULE_UPDATE
+  AUTOMATION_RULE_DELETE
+}
+
+type PermissionType {
+  allowed: Boolean!
+  permission: PermissionEnum!
+}
+
+type Placeholder {
+  description: String
+  key: String!
+  label: String!
+  namespace: String!
+  returnType: PlaceholderParameterReturnTypeEnum!
+}
+
+enum PlaceholderParameterReturnTypeEnum {
+  STRING
+  INT
+  BOOL
+  DOUBLE
+  MAP
+  LIST
+  ANY
+}
+
+type Query {
+  activityLogsConnection(
+    organizationId: ID!
+    userId: ID
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): ActivityLogConnection!
+  attachmentShow(organizationId: ID!, id: ID!): AttachmentShow!
+  attachmentVersionsConnection(
+    organizationId: ID!
+    attachmentId: ID!
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): AttachmentVersionConnection!
+  attachmentsConnection(
+    organizationId: ID!
+    folderId: ID
+    trashed: Boolean
+    term: String
+    sortBy: AttachmentSortByEnum
+    sortType: SortTypeEnum
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): AttachmentConnection!
+  automationRulesList(organizationId: ID!, status: AutomationRuleStatusEnum): [AutomationRule!]!
+  beingUploadedFiles(organizationId: ID!, uploadJobIds: [ID!]!): [UploadJobFile!]!
+  collectionFilesConnection(
+    organizationId: ID!
+    id: ID!
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): CollectionAttachmentConnection!
+  collectionsConnection(
+    organizationId: ID!
+    attachmentIds: [ID!]
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): CollectionConnection!
+  commentsConnection(
+    organizationId: ID!
+    commentableId: ID!
+    commentableType: CommentCommentableTypeEnum!
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): CommentConnection!
+  credentialAuthLink(organizationId: ID!, name: String!, provider: CredentialAuthLinkProviderEnum!): CredentialAuthLink!
+  credentialsList(organizationId: ID!, archived: Boolean): [Credential!]!
+  directUploadListParts(organizationId: ID!, s3UploadId: String!, key: String!): [DirectUploadListParts!]!
+  directUploadPrepareUploadPart(organizationId: ID!, s3UploadId: String!, key: String!, partNumber: Int!): DirectUploadPrepareUploadPart!
+  downloadLinksConnection(
+    organizationId: ID!
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): DownloadLinkConnection!
+  folderShow(organizationId: ID!, id: ID!): FolderShow!
+  foldersConnection(
+    organizationId: ID!
+    parentId: ID
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): FolderConnection!
+  foldersFullList(organizationId: ID!): FolderRawList!
+  integrationSlackChannelsList(organizationId: ID!, integrationId: ID!): [IntegrationSlackChannel!]!
+  invitationsConnection(
+    organizationId: ID!
+    teamId: ID!
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): InvitationConnection!
+  me: Me!
+  myActivityLogsConnection(
+    organizationId: ID!
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): ActivityLogConnection!
+  notificationsConnection(
+    organizationId: ID!
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): NotificationConnection!
+  oneDriveAuthorizeUrl(organizationId: ID!, redirectUri: String!): OneDriveConnect!
+  oneSearchAutocompleteList(organizationId: ID!, term: String!): OneSearchAutocomplete!
+  oneSearchList(organizationId: ID!, term: String!): OneSearch!
+  organizationMemberShow(id: ID!, organizationId: ID!): OrganizationMember!
+  organizationMembersList(organizationId: ID!, term: String): [OrganizationMember!]!
+  organizationSectorList: [OrganizationSector!]!
+  organizationShow(id: ID!): OrganizationShow!
+  organizationStats(organizationId: ID!): [OrganizationStat!]!
+  permissionLookup(organizationId: ID!, entities: [PermissionEntitiesInput!]!): [Permission!]!
+  placeholdersList(eventType: AutomationTriggerEventTypeEnum!): [Placeholder!]!
+  rolesList(organizationId: ID!): [Role!]!
+  shareableLinksConnection(
+    organizationId: ID!
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): ShareableLinkConnection!
+  tagsConnection(
+    organizationId: ID!
+    term: String
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): TagConnection!
+  teamMembersConnection(
+    organizationId: ID!
+    teamId: ID!
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): TeamMemberConnection!
+  teamShow(organizationId: ID!, id: ID!): TeamShow!
+  teamsList(organizationId: ID!): [Team!]!
+  userFavoritesConnection(
+    organizationId: ID!
+
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): UserFavoriteConnection!
+}
+
+enum RelatedObjectEnum {
+  COLLECTION
+  SHAREABLE_LINK
+  DOWNLOAD_LINK
+  ATTACHMENT
+}
+
+type ResourcePermission {
+  createdAt: BigInt
+  group: RolePermissionGroupEnum
+  id: ID!
+  permission: PermissionEnum!
+}
+
+type ResourceRole {
+  description: String
+  id: ID!
+  kind: RoleKindEnum!
+  name: String!
+  permissions: [ResourcePermission!]!
+}
+
+enum ResourceTypeEnum {
+  COLLECTION
+  ATTACHMENT
+  FOLDER
+}
+
+union ResourceUnion = ShareableLinkAttachment | ShareableLinkCollection | ShareableLinkFolder
+
+type Response {
+  message: String
+  success: Boolean!
+}
+
+type Role {
+  createdAt: BigInt
+  description: String
+  id: ID!
+  kind: RoleKindEnum!
+  name: String!
+  permissions: [ResourcePermission!]!
+  updatedAt: BigInt
+}
+
+input RoleCreateInput {
+  organizationId: ID!
+  name: String!
+  description: String
+  permissions: [RolePermissionInput!]!
+}
+
+input RoleDeleteInput {
+  id: ID!
+  organizationId: ID!
+}
+
+enum RoleKindEnum {
+  SYSTEM
+  CUSTOM
+}
+
+enum RolePermissionGroupEnum {
+  ORGANIZATION
+  FOLDER
+  ATTACHMENT
+  TEAM
+}
+
+input RolePermissionInput {
+  permission: PermissionEnum!
+}
+
+input RoleUpdateInput {
+  id: ID!
+  organizationId: ID!
+  name: String!
+  description: String!
+  permissions: [RolePermissionInput!]!
+}
+
+enum SearchFileTypeEnum {
+  DIRECTORY
+  FILE
+  COLLECTION
+  DOWNLOAD_LINK
+  SHAREABLE_LINK
+  TEAM
+  USER
+}
+
+enum SectorEnum {
+  MARKETING_CREATIVE
+  RETAIL_ECOMMERCE
+  MEDIA_ENTERTAINMENT
+  AGENCY
+  TECH_SAAS
+  REAL_ESTATE_CONSTRUCTION
+  EDUCATION_NONPROFIT
+  OTHER
+}
+
+type ShareableLink {
+  createdAt: BigInt!
+  createdBy: AttachmentUser!
+  expiresAt: BigInt
+  id: ID!
+  resource: ResourceUnion!
+  revokedAt: BigInt
+  title: String
+  token: String!
+  updatedAt: BigInt!
+}
+
+type ShareableLinkAttachment {
+  id: ID!
+}
+
+type ShareableLinkCollection {
+  id: ID!
+}
+
+"""The connection type for ShareableLink."""
+type ShareableLinkConnection {
+  """A list of edges."""
+  edges: [ShareableLinkEdge]
+
+  """A list of nodes."""
+  nodes: [ShareableLink]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+input ShareableLinkCreateInput {
+  organizationId: ID!
+  resourceId: ID!
+  resourceType: ResourceTypeEnum!
+  title: String!
+  password: String
+  expirationDate: BigInt
+}
+
+input ShareableLinkDeleteInput {
+  organizationId: ID!
+  id: ID!
+}
+
+"""An edge in a connection."""
+type ShareableLinkEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: ShareableLink
+}
+
+type ShareableLinkFolder {
+  id: ID!
+}
+
+input SlackOauth2ParameterInput {
+  channelId: String!
+  channelName: String!
+  messageTemplate: String
+}
+
+enum SortTypeEnum {
+  ASC
+  DESC
+}
+
+enum StatSourceEnum {
+  DATA
+  DOWNLOAD
+}
+
+enum StateEnum {
+  PENDING
+  UPLOAD_IN_PROGRESS
+  PROCESSING
+  COMPLETED
+  ABORTED
+  EXPIRED
+  MISMATCH
+  UPLOAD_COMPLETED
+}
+
+type Tag {
+  createdAt: BigInt!
+  id: ID!
+  name: String!
+}
+
+"""The connection type for Tag."""
+type TagConnection {
+  """A list of edges."""
+  edges: [TagEdge]
+
+  """A list of nodes."""
+  nodes: [Tag]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+"""An edge in a connection."""
+type TagEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Tag
+}
+
+type Team implements TeamInterface {
+  createdAt: BigInt!
+  description: String
+  id: ID!
+  name: String!
+  teamMembers: [TeamMember!]!
+  updatedAt: BigInt!
+}
+
+input TeamCreateInput {
+  organizationId: ID!
+  name: String!
+  description: String
+  roleIds: [ID!]
+}
+
+input TeamDeleteInput {
+  id: ID!
+  organizationId: ID!
+}
+
+interface TeamInterface {
+  createdAt: BigInt!
+  description: String
+  id: ID!
+  name: String!
+  teamMembers: [TeamMember!]!
+  updatedAt: BigInt!
+}
+
+type TeamMember {
+  createdAt: BigInt!
+  id: ID!
+  updatedAt: BigInt!
+  user: TeamMemberUser!
+}
+
+"""The connection type for TeamMember."""
+type TeamMemberConnection {
+  """A list of edges."""
+  edges: [TeamMemberEdge]
+
+  """A list of nodes."""
+  nodes: [TeamMember]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+input TeamMemberCreateInput {
+  organizationId: ID!
+  teamId: ID!
+  userIds: [ID!]!
+  message: String
+}
+
+input TeamMemberDeleteInput {
+  id: ID!
+  organizationId: ID!
+}
+
+"""An edge in a connection."""
+type TeamMemberEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: TeamMember
+}
+
+type TeamMemberUser {
+  avatarUrl: String
+  firstName: String
+  lastName: String
+}
+
+type TeamShow implements TeamInterface {
+  activityLogs(
+    """Returns the elements in the list that come after the specified cursor."""
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """Returns the first _n_ elements from the list."""
+    first: Int
+
+    """Returns the last _n_ elements from the list."""
+    last: Int
+  ): EntityActivityLogConnection
+  createdAt: BigInt!
+  description: String
+  id: ID!
+  name: String!
+  roles: [ResourceRole!]
+  teamMembers: [TeamMember!]!
+  updatedAt: BigInt!
+}
+
+input TeamUpdateInput {
+  id: ID!
+  organizationId: ID!
+  name: String!
+  description: String
+  roleIds: [ID!]
+}
+
+scalar Upload
+
+type UploadJobFile {
+  attachmentId: ID!
+  bytes: BigInt!
+  createdAt: BigInt!
+  id: ID!
+  name: String!
+  state: StateEnum!
+}
+
+type UploadJobStart {
+  id: ID!
+  isConflict: Boolean!
+  paths: [String!]!
+}
+
+input UploadJobStartInput {
+  organizationId: ID!
+  paths: [String!]!
+  parentId: ID
+}
+
+input UploadJobUpdateInput {
+  organizationId: ID!
+  id: ID!
+  keepDir: Boolean!
+}
+
+type UserFavorite {
+  createdAt: BigInt!
+  favorable: FavorableUnion!
+  id: ID!
+}
+
+type UserFavoriteAttachment {
+  id: ID!
+  name: String!
+  thumbnailUrl: String
+}
+
+type UserFavoriteCollection {
+  id: ID!
+  name: String!
+}
+
+"""The connection type for UserFavorite."""
+type UserFavoriteConnection {
+  """A list of edges."""
+  edges: [UserFavoriteEdge]
+
+  """A list of nodes."""
+  nodes: [UserFavorite]
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+}
+
+input UserFavoriteCreateInput {
+  organizationId: ID!
+  favorites: [UserFavoriteFavorableInput!]!
+}
+
+input UserFavoriteDeleteInput {
+  ids: [ID!]!
+  organizationId: ID!
+}
+
+"""An edge in a connection."""
+type UserFavoriteEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: UserFavorite
+}
+
+input UserFavoriteFavorableInput {
+  favorableId: ID!
+  favorableType: FavorableTypeEnum!
+}
+
+type UserFavoriteFolder {
+  id: ID!
+  name: String!
+}
+
+input WebhookParameterInput {
+  url: String!
+}

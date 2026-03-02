@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { chromium, type BrowserContext } from '@playwright/test';
-import { LoginPage } from '../pages';
+import { LoginPage } from '../src/ui';
 
 const AUTH_FILE = path.join(process.cwd(), '.auth', 'user.json');
 

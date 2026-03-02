@@ -1,0 +1,19 @@
+mutation directUploadInitiate($input: DirectUploadInitiateInput!){
+    directUploadInitiate(input: $input){
+        uploadDetails{
+            __typename
+            ... on DirectUploadMultipartUpload {
+                attachmentId
+                key
+                s3UploadId
+            }
+            ... on DirectUploadSingleUpload {
+                attachmentId
+                fields
+                headers
+                s3Method
+                url
+            }
+        }
+    }
+}

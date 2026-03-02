@@ -1,0 +1,10 @@
+query organizationShow($id: ID!){
+    organizationShow(id: $id){
+        createdAt
+        dataSize
+        id
+        name
+        slug
+        updatedAt
+    }
+}

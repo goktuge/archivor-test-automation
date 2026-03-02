@@ -1,0 +1,6 @@
+mutation roleDelete($input: RoleDeleteInput!){
+    roleDelete(input: $input){
+        message
+        success
+    }
+}

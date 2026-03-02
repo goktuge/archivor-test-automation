@@ -1,0 +1,6 @@
+mutation automationRuleDelete($input: AutomationRuleDeleteInput!){
+    automationRuleDelete(input: $input){
+        message
+        success
+    }
+}

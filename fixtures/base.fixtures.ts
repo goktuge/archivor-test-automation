@@ -1,6 +1,6 @@
 import type { Page } from '@playwright/test';
 import { test as base } from '@playwright/test';
-import { LoginPage } from '../pages';
+import { LoginPage } from '../src/ui';
 import { env } from '../config/env.config';
 
 // ─── Base fixtures ──────────────────────────────────────────────────────────

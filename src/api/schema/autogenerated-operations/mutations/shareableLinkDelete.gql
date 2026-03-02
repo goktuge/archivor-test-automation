@@ -1,0 +1,6 @@
+mutation shareableLinkDelete($input: ShareableLinkDeleteInput!){
+    shareableLinkDelete(input: $input){
+        message
+        success
+    }
+}

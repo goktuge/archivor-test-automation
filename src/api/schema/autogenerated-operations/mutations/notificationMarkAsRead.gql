@@ -1,0 +1,6 @@
+mutation notificationMarkAsRead($input: NotificationMarkAsReadInput!){
+    notificationMarkAsRead(input: $input){
+        message
+        success
+    }
+}

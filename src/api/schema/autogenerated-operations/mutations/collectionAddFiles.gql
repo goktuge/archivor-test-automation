@@ -1,0 +1,6 @@
+mutation collectionAddFiles($input: CollectionAddFilesInput!){
+    collectionAddFiles(input: $input){
+        message
+        success
+    }
+}

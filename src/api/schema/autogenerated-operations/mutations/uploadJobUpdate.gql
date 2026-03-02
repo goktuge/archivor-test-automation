@@ -1,0 +1,6 @@
+mutation uploadJobUpdate($input: UploadJobUpdateInput!){
+    uploadJobUpdate(input: $input){
+        message
+        success
+    }
+}

@@ -1,0 +1,8 @@
+mutation fileRestoreFromTrash($input: FileRestoreFromTrashInput!){
+    fileRestoreFromTrash(input: $input){
+        error
+        failureReason
+        id
+        success
+    }
+}

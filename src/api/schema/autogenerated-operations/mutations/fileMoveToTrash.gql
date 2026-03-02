@@ -1,0 +1,12 @@
+mutation fileMoveToTrash($input: FileMoveToTrashInput!){
+    fileMoveToTrash(input: $input){
+        error
+        failureReason
+        id
+        relatedObjectCounts{
+            count
+            objectType
+        }
+        success
+    }
+}

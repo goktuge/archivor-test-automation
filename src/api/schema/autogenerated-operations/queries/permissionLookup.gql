@@ -1,0 +1,10 @@
+query permissionLookup($organizationId: ID!, $entities: [PermissionEntitiesInput!]!){
+    permissionLookup(organizationId: $organizationId, entities: $entities){
+        entityId
+        entityType
+        permissions{
+            allowed
+            permission
+        }
+    }
+}

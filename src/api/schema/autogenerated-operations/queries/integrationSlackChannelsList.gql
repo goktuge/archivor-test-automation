@@ -1,0 +1,6 @@
+query integrationSlackChannelsList($organizationId: ID!, $integrationId: ID!){
+    integrationSlackChannelsList(organizationId: $organizationId, integrationId: $integrationId){
+        id
+        name
+    }
+}

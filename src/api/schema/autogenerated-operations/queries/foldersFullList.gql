@@ -1,0 +1,6 @@
+query foldersFullList($organizationId: ID!){
+    foldersFullList(organizationId: $organizationId){
+        folders
+        size
+    }
+}

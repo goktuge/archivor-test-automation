@@ -1,0 +1,6 @@
+mutation importFromDrive($input: DriveImportInput!){
+    importFromDrive(input: $input){
+        message
+        success
+    }
+}

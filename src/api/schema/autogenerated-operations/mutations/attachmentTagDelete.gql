@@ -1,0 +1,6 @@
+mutation attachmentTagDelete($input: AttachmentTagDelete!){
+    attachmentTagDelete(input: $input){
+        message
+        success
+    }
+}

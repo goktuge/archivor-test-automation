@@ -11,7 +11,7 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      "@pages/*": ["pages/*"],
+      "@pages/*": ["src/ui/pages/*"],"@ui/*":["src/ui/*"],
       "@fixtures/*": ["fixtures/*"],
       "@utils/*": ["utils/*"]
     }

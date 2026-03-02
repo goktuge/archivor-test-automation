@@ -1,0 +1,20 @@
+query me{
+    me{
+        avatarUrl
+        createdAt
+        email
+        firstName
+        id
+        lastName
+        organizations{
+            createdAt
+            dataSize
+            id
+            name
+            slug
+            updatedAt
+        }
+        timezone
+        updatedAt
+    }
+}

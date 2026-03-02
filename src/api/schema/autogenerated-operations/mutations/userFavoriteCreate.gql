@@ -1,0 +1,6 @@
+mutation userFavoriteCreate($input: UserFavoriteCreateInput!){
+    userFavoriteCreate(input: $input){
+        message
+        success
+    }
+}

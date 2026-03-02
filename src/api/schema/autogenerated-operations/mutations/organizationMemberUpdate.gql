@@ -1,0 +1,29 @@
+mutation organizationMemberUpdate($input: OrganizationMemberUpdateInput!){
+    organizationMemberUpdate(input: $input){
+        id
+        invitationEmail
+        invitedAt
+        invitedBy{
+            avatarUrl
+            firstName
+            id
+            lastName
+        }
+        joinedAt
+        roles{
+            id
+            name
+        }
+        state
+        teams{
+            id
+            name
+        }
+        user{
+            avatarUrl
+            firstName
+            id
+            lastName
+        }
+    }
+}
