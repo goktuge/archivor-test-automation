@@ -4,7 +4,7 @@ import { test, expect } from '../../fixtures';
 import { env } from '../../config/env.config';
 
 test.describe('File upload and delete', () => {
-  test('@e2e @smoke Upload file, verify in All assets, then delete', async ({
+  test('@regression @smoke Upload file, verify in All assets, then delete', async ({
     loginPage,
     assetsPage,
   }, testInfo) => {

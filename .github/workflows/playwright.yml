@@ -112,7 +112,7 @@ jobs:
         run: npx playwright install --with-deps ${{ matrix.project == 'chromium-unauth' && 'chromium' || matrix.project }}
 
       - name: Run regression tests
-        run: npx playwright test tests/ui --grep=@e2e --project=${{ matrix.project }}
+        run: npx playwright test tests/ui --grep=@regression --project=${{ matrix.project }}
         continue-on-error: true
         env:
           ENV: prod

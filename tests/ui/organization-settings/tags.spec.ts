@@ -1,7 +1,7 @@
 import { test, expect } from '../../../fixtures';
 
 test.describe('Organization settings - Tags', () => {
-  test('@smoke @e2e Tags tab loads', async ({ tagsTabPage, page }) => {
+  test('@smoke @regression Tags tab loads', async ({ tagsTabPage, page }) => {
     await tagsTabPage.gotoTagsTab();
 
     await expect(page).toHaveURL(/settings|organization/i);

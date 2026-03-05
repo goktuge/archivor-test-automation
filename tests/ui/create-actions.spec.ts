@@ -1,7 +1,7 @@
 import { test, expect } from '../../fixtures';
 
 test.describe('Create actions', () => {
-  test('@e2e @smoke Create Folder opens modal', async ({ assetsPage, page }) => {
+  test('@regression @smoke Create Folder opens modal', async ({ assetsPage, page }) => {
     await assetsPage.gotoAndWaitForReady('/');
 
     await assetsPage.clickCreateFolder();
@@ -13,7 +13,7 @@ test.describe('Create actions', () => {
     await expect(dialog).toBeHidden();
   });
 
-  test('@e2e @smoke New Collection opens modal', async ({ assetsPage, page }) => {
+  test('@regression @smoke New Collection opens modal', async ({ assetsPage, page }) => {
     await assetsPage.gotoAndWaitForReady('/');
 
     await assetsPage.clickNewCollection();
@@ -25,7 +25,7 @@ test.describe('Create actions', () => {
     await expect(dialog).toBeHidden();
   });
 
-  test('@e2e New menu closes on Escape', async ({ assetsPage }) => {
+  test('@regression New menu closes on Escape', async ({ assetsPage }) => {
     await assetsPage.gotoAndWaitForReady('/');
 
     await assetsPage.clickNew();

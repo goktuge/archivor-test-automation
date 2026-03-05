@@ -13,7 +13,7 @@ test.describe('Login', () => {
       expect(loggedIn).toBe(true);
     });
 
-    test('@regression @auth @e2e Login with invalid credentials shows error', async ({
+    test('@regression @auth Login with invalid credentials shows error', async ({
       loginPage,
     }) => {
       await loginPage.gotoAndWaitForReady(env.loginPath);
@@ -33,7 +33,7 @@ test.describe('Login', () => {
   });
 
   test.describe('Form validation', () => {
-    test('@e2e @auth Login with empty credentials shows validation', async ({
+    test('@regression @auth Login with empty credentials shows validation', async ({
       loginPage,
     }) => {
       await loginPage.gotoAndWaitForReady(env.loginPath);

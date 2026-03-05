@@ -1,7 +1,7 @@
 import { test, expect } from '../../../fixtures';
 
 test.describe('Organization settings - Teams', () => {
-  test('@smoke @e2e Teams tab loads', async ({ teamsTabPage, page }) => {
+  test('@smoke @regression Teams tab loads', async ({ teamsTabPage, page }) => {
     await teamsTabPage.gotoTeamsTab();
 
     await expect(page).toHaveURL(/settings|organization/i);

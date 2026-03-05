@@ -1,7 +1,7 @@
 import { test, expect } from '../../fixtures';
 
 test.describe('Dashboard', () => {
-  test('@smoke @e2e Left menu has all expected items: Dashboard, All assets, My favorites, Collections, Recently deleted', async ({
+  test('@smoke @regression Left menu has all expected items: Dashboard, All assets, My favorites, Collections, Recently deleted', async ({
     dashboardPage,
   }) => {
     await dashboardPage.gotoAndWaitForReady('/');
@@ -9,7 +9,7 @@ test.describe('Dashboard', () => {
     await dashboardPage.expectAllMenuItemsVisible();
   });
 
-  test('@smoke @e2e cu', async ({
+  test('@smoke @regression Dashboard shows welcome message', async ({
     dashboardPage,
     page,
   }) => {

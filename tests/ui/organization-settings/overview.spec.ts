@@ -8,7 +8,7 @@ const OVERVIEW_EXPECTED_TEXTS = [
 ];
 
 test.describe('Organization settings - Overview', () => {
-  test('@smoke @e2e Overview tab loads with org name and metrics', async ({ overviewTabPage, page }) => {
+  test('@smoke @regression Overview tab loads with org name and metrics', async ({ overviewTabPage, page }) => {
     await overviewTabPage.gotoOverviewTab();
 
     await expect(page).toHaveURL(/settings|organization/i);

@@ -2,7 +2,7 @@ import { test, expect } from '../../../fixtures';
 import { ORG_SETTINGS_TABS } from '../../../src/ui';
 
 test.describe('Organization settings', () => {
-  test('@smoke @e2e Organization settings tabs open correctly and titles exist', async ({
+  test('@smoke @regression Organization settings tabs open correctly and titles exist', async ({
     organizationSettingsPage,
     page,
   }) => {

@@ -1,7 +1,7 @@
 import { test, expect } from '../../fixtures';
 
 test.describe('App shell', () => {
-  test('@smoke @e2e Session persists after navigation', async ({ dashboardPage, page }) => {
+  test('@smoke @regression Session persists after navigation', async ({ dashboardPage, page }) => {
     await dashboardPage.gotoAndWaitForReady('/');
 
     // Navigate through sections
@@ -14,13 +14,13 @@ test.describe('App shell', () => {
     await expect(page).not.toHaveURL(/login|signin|auth/);
   });
 
-  test('@smoke @e2e New button is visible on dashboard', async ({ assetsPage }) => {
+  test('@smoke @regression New button is visible on dashboard', async ({ assetsPage }) => {
     await assetsPage.gotoAndWaitForReady('/');
 
     await expect(assetsPage.newButton).toBeVisible();
   });
 
-  test('@smoke @e2e New button is visible on All assets page', async ({ assetsPage }) => {
+  test('@smoke @regression New button is visible on All assets page', async ({ assetsPage }) => {
     await assetsPage.gotoAndWaitForReady('/');
     await assetsPage.goToAllAssets();
 

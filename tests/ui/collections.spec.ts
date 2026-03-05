@@ -2,7 +2,7 @@ import { test } from '../../fixtures';
 import { expectSectionLoaded } from '../../utils/test-helpers';
 
 test.describe('Collections', () => {
-  test('@smoke @e2e Collections page loads', async ({ dashboardPage, page }) => {
+  test('@smoke @regression Collections page loads', async ({ dashboardPage, page }) => {
     await dashboardPage.gotoAndWaitForReady('/');
 
     await dashboardPage.gotoSection('collections');
