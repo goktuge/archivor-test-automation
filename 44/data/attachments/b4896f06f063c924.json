@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 3443
+  },
+  "test": {
+    "title": "@regression @auth Login with invalid credentials shows error",
+    "status": "passed",
+    "duration": 3443,
+    "browser": "chromium-unauth"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 7929
+  },
+  "test": {
+    "title": "@regression @auth @e2e Login with invalid credentials shows error",
+    "status": "passed",
+    "duration": 3530,
+    "browser": "chromium-unauth"
+  }
+}

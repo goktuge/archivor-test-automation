@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 14308
+  },
+  "test": {
+    "title": "@smoke @e2e Teams tab loads",
+    "status": "passed",
+    "duration": 14308,
+    "browser": "webkit"
+  }
+}
