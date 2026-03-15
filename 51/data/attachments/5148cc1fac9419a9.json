@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "totalDuration": 22597
+  },
+  "test": {
+    "title": "@regression @smoke Upload file, verify in All assets, then delete",
+    "status": "failed",
+    "duration": 22597,
+    "browser": "chromium-unauth"
+  }
+}

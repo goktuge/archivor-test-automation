@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 13648
+  },
+  "test": {
+    "title": "@e2e New menu closes on Escape",
+    "status": "passed",
+    "duration": 13648,
+    "browser": "webkit"
+  }
+}

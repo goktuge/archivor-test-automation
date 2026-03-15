@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 18033
+  },
+  "test": {
+    "title": "@regression @smoke Create Folder opens modal",
+    "status": "passed",
+    "duration": 18033,
+    "browser": "webkit"
+  }
+}

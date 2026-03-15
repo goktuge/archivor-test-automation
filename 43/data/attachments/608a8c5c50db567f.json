@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "totalDuration": 18321
+  },
+  "test": {
+    "title": "@smoke @regression All assets page loads",
+    "status": "failed",
+    "duration": 18321,
+    "browser": "webkit"
+  }
+}

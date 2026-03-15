@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 32546
+  },
+  "test": {
+    "title": "@smoke @regression New button is visible on All assets page",
+    "status": "passed",
+    "duration": 9877,
+    "browser": "webkit"
+  }
+}

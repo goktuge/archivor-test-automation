@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "totalDuration": 30000
+  },
+  "test": {
+    "title": "@smoke @e2e Shareable links tab loads",
+    "status": "timedOut",
+    "duration": 30000,
+    "browser": "firefox"
+  }
+}

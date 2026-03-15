@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 11791
+  },
+  "test": {
+    "title": "@smoke @e2e Roles tab loads",
+    "status": "passed",
+    "duration": 11791,
+    "browser": "webkit"
+  }
+}

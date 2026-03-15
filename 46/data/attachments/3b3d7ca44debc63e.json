@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 12418
+  },
+  "test": {
+    "title": "@regression New menu closes on Escape",
+    "status": "passed",
+    "duration": 12418,
+    "browser": "webkit"
+  }
+}
