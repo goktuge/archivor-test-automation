@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 13906
+  },
+  "test": {
+    "title": "@smoke @regression Tags tab loads",
+    "status": "passed",
+    "duration": 13906,
+    "browser": "webkit"
+  }
+}

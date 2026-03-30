@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 16765
+  },
+  "test": {
+    "title": "@smoke @regression Session persists after navigation",
+    "status": "passed",
+    "duration": 16765,
+    "browser": "firefox"
+  }
+}

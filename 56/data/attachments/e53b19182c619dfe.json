@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 10131
+  },
+  "test": {
+    "title": "@smoke @regression Left menu has all expected items: Dashboard, All assets, My favorites, Collections, Recently deleted",
+    "status": "passed",
+    "duration": 10131,
+    "browser": "webkit"
+  }
+}

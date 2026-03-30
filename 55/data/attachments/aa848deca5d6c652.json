@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 10222
+  },
+  "test": {
+    "title": "@smoke @regression Recently deleted page loads",
+    "status": "passed",
+    "duration": 10222,
+    "browser": "webkit"
+  }
+}

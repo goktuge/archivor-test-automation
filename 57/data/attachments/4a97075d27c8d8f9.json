@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 4435
+  },
+  "test": {
+    "title": "@regression @auth Login page loads successfully",
+    "status": "passed",
+    "duration": 386,
+    "browser": "chromium-unauth"
+  }
+}

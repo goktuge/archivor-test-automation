@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "totalDuration": 20926
+  },
+  "test": {
+    "title": "@smoke @regression New button is visible on dashboard",
+    "status": "passed",
+    "duration": 8846,
+    "browser": "firefox"
+  }
+}

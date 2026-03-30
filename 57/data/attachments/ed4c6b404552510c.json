@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "totalDuration": 14557
+  },
+  "test": {
+    "title": "@regression @smoke New menu shows all expected options",
+    "status": "failed",
+    "duration": 14557,
+    "browser": "webkit"
+  }
+}

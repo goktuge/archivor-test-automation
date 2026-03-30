@@ -1,0 +1,15 @@
+{
+  "metrics_summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "totalDuration": 23316
+  },
+  "test": {
+    "title": "@smoke @regression Organization settings tabs open correctly and titles exist",
+    "status": "failed",
+    "duration": 23316,
+    "browser": "webkit"
+  }
+}
